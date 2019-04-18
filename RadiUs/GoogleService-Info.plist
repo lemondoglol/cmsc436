@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1016221968096-66r0erj8a70aovpp3kp16i7gfogf9ls0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1016221968096-66r0erj8a70aovpp3kp16i7gfogf9ls0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCO3s6Yk51xI84TCPERbN0Gpsxg7aD4BZI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1016221968096</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>lemon.RadiUs</string>
+	<key>PROJECT_ID</key>
+	<string>radius-9c8dc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>radius-9c8dc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1016221968096:ios:e582b66730c5720d</string>
+	<key>DATABASE_URL</key>
+	<string>https://radius-9c8dc.firebaseio.com</string>
+</dict>
+</plist>
