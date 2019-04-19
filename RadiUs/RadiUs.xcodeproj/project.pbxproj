@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		848B5C2022693E9800DB6DE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848B5C1F22693E9800DB6DE0 /* GoogleService-Info.plist */; };
+		848B5C222269413300DB6DE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B5C212269413300DB6DE0 /* User.swift */; };
+		848B5C24226942B200DB6DE0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B5C23226942B200DB6DE0 /* Model.swift */; };
+		848B5C262269458200DB6DE0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B5C252269458200DB6DE0 /* Post.swift */; };
 		84FE65172269395D00633F7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE65162269395D00633F7A /* AppDelegate.swift */; };
 		84FE65192269395D00633F7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE65182269395D00633F7A /* ViewController.swift */; };
 		84FE651C2269395D00633F7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FE651A2269395D00633F7A /* Main.storyboard */; };
@@ -19,6 +22,9 @@
 
 /* Begin PBXFileReference section */
 		848B5C1F22693E9800DB6DE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		848B5C212269413300DB6DE0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		848B5C23226942B200DB6DE0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		848B5C252269458200DB6DE0 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		84FE65132269395D00633F7A /* RadiUs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadiUs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FE65162269395D00633F7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84FE65182269395D00633F7A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +79,9 @@
 				84FE65252269396000633F7A /* Info.plist */,
 				84FE651D2269395D00633F7A /* RadiUs.xcdatamodeld */,
 				848B5C1F22693E9800DB6DE0 /* GoogleService-Info.plist */,
+				848B5C212269413300DB6DE0 /* User.swift */,
+				848B5C23226942B200DB6DE0 /* Model.swift */,
+				848B5C252269458200DB6DE0 /* Post.swift */,
 			);
 			path = RadiUs;
 			sourceTree = "<group>";
@@ -219,7 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848B5C24226942B200DB6DE0 /* Model.swift in Sources */,
+				848B5C222269413300DB6DE0 /* User.swift in Sources */,
 				84FE65192269395D00633F7A /* ViewController.swift in Sources */,
+				848B5C262269458200DB6DE0 /* Post.swift in Sources */,
 				84FE65172269395D00633F7A /* AppDelegate.swift in Sources */,
 				84FE651F2269395D00633F7A /* RadiUs.xcdatamodeld in Sources */,
 			);

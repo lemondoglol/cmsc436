@@ -7,17 +7,16 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class ViewController: UIViewController {
-
-    var databaseRef : DatabaseReference?
+    
+    // used to call methods to access DATABASE
+    var model:Model?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        databaseRef = Database.database().reference()
-        databaseRef?.child("name").childByAutoId().setValue("helloWord")
+        model = Model()
     }
 
 
