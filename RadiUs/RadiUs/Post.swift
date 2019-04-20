@@ -15,19 +15,42 @@ class Post {
     var postID = ""
     // content of the post
     var content = ""
-    // following contents    postID:contents
-    var followingContents = [String:String]()
+    // following replies;  messages, user who replied this post
+    var replies : [String:String] = [:]
     
     init(postID:String, content:String){
         self.postID = postID
         self.content = content
     }
     
-    func getFollowersID() -> [String] {
+    // get repliers of this Post
+    func getRepliers() -> [String] {
         var res = [String]()
-        for (pid,_) in followingContents {
-            res.append(pid)
+        for (_,user) in replies {
+            res.append(user)
         }
         return res
     }
+    
+    // get replies of this Post
+    func getReplies() -> [String] {
+        var res = [String]()
+        for (message,_) in replies {
+            res.append(message)
+        }
+        return res
+    }
+    
+    
+    func serialize() -> String {
+        let res = ""
+        return res
+    }
+    
+    func deserialize() -> String {
+        let res = ""
+        return res
+    }
+    
+    
 }

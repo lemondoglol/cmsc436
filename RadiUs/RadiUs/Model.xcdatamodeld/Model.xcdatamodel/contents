@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PostTable" representedClassName="PostTable" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="replies" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserTable" inverseName="post" inverseEntity="UserTable" syncable="YES"/>
+    </entity>
+    <entity name="UserTable" representedClassName="UserTable" syncable="YES" codeGenerationType="class">
+        <attribute name="emailAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="posts" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="post" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PostTable" inverseName="user" inverseEntity="PostTable" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="UserTable" positionX="-11033" positionY="-101.4140625" width="128" height="133"/>
+        <element name="PostTable" positionX="-11241.96484375" positionY="-134.74609375" width="128" height="103"/>
+    </elements>
+</model>

@@ -8,6 +8,8 @@
 
 import Foundation
 import FirebaseDatabase
+import CoreData
+import CoreLocation
 // this class is used to provide functionalities to access Database(upload and retrieve data)
 
 
@@ -17,5 +19,10 @@ class Model {
     
     init(){
         databaseRef = Database.database().reference()
+        test()
+    }
+    
+    func test() {
+        // databaseRef?.childByAutoId().setValue("hi")
     }
 }
