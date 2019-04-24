@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         databaseRef = Database.database().reference()
         logIN(firstName: "Ryan", lastName: "Chen", emailAddress: "rc@fakemailcom", password: "abc123")
         // uncomment this to see how it works
-        //test()
+        test()
     }
     
     // call logIN when everytime user run this app
