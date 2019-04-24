@@ -15,7 +15,7 @@
         <relationship name="post" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PostTable" inverseName="user" inverseEntity="PostTable" syncable="YES"/>
     </entity>
     <elements>
+        <element name="PostTable" positionX="-11456.43359375" positionY="-263.86328125" width="128" height="103"/>
         <element name="UserTable" positionX="-11033" positionY="-101.4140625" width="128" height="133"/>
-        <element name="PostTable" positionX="-11241.96484375" positionY="-134.74609375" width="128" height="103"/>
     </elements>
 </model>
