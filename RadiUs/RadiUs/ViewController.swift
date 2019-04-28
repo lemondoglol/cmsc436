@@ -38,6 +38,27 @@ class ViewController: UIViewController {
         currentUser = User(firstName: firstName, lastName: lastName, emailAddress: emailAddress, password: password)
     }
     
+    // logIn verify, if success, then do the segue, call this method before call logIn method
+    func logInVerify(emailAddress:String, password:String){
+        databaseRef.child("userTable").observeSingleEvent(of: .value, with: {(snapshot) in
+            var userExist = false
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let userID = child.key
+                let ps = child.childSnapshot(forPath: "password").value as? String
+                if userID == emailAddress && password == ps {
+                    // do the segues here
+                    print("user logged In")
+                    userExist = true;
+                    break;
+                }
+            }
+            if userExist == false {
+                // handle it if user failed to logIn
+                print("user not exist")
+            }
+        })
+    }
+    
     // you can run this method to see how it works
     func test() {
         let p1 = Post(postID: "0", content: "good", latitude: 0, longitude: 0)
@@ -50,6 +71,9 @@ class ViewController: UIViewController {
         makeCommentsOnPost(comment: "rc add a a anew comment", postID: "1")
         retrieveSinglePostFromFirebase(postID: "1")
         retrieveAllPostsFromFirebase()
+        
+        logInVerify(emailAddress: "rc@fakemailcom", password: "abc123")
+        logInVerify(emailAddress: "rcs@fakemailcom", password: "abc123")
     }
     
     /*
