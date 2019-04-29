@@ -162,6 +162,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nd7-MQ-cPP"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordOutlet" destination="pPh-mc-c9U" id="b58-LE-oov"/>
+                        <outlet property="usernameOutlet" destination="8fL-DG-esx" id="jDU-jb-1xY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nnd-k0-NDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
