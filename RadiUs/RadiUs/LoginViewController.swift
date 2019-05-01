@@ -57,7 +57,8 @@ class LoginViewController : UIViewController{
             }
             if userExist == false {
                 // handle it if user failed to logIn
-                print("user not exist")
+                //self.segueToTabBar()
+                print("user does not exist")
             }
         })
     }
@@ -66,5 +67,11 @@ class LoginViewController : UIViewController{
         let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabController") as! TabController
         tabController.selectedViewController = tabController.viewControllers?[1]
         self.present(tabController, animated: true, completion: nil)
+    }
+    
+    @IBAction func signup(_ sender: Any) {
+        let signupController = self.storyboard?.instantiateViewController(withIdentifier: "SignupView") as! SignupViewController
+
+        self.show(signupController, sender: self)
     }
 }
