@@ -56,8 +56,12 @@ class LoginViewController : UIViewController{
                 }
             }
             if userExist == false {
-                // handle it if user failed to logIn
-                //self.segueToTabBar()
+                let alert = UIAlertController(title: "Could not verify", message: "Your username or password was entered incorrectly", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                
+                self.present(alert, animated: true)
+                
                 print("user does not exist")
             }
         })
