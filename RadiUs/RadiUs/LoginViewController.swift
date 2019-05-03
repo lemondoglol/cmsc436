@@ -20,9 +20,45 @@ class LoginViewController : UIViewController{
     @IBOutlet weak var usernameOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
+    
+    let msGreen = UIColor(rgb: 0x00FA9A)
+    let limeGreen = UIColor(rgb: 0x90EE90)
+    let aliceBlue = UIColor(rgb: 0xF0F8FF)
+    let aquamarine = UIColor(rgb: 0x7FFFD4)
+    let loginText = UIColor(rgb: 0xFF69B4)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         databaseRef = Database.database().reference()
+        
+        loginButton.layer.cornerRadius = 20
+        loginButton.layer.backgroundColor = limeGreen.cgColor
+        loginButton.layer.borderColor = msGreen.cgColor
+        loginButton.layer.borderWidth = 2
+        loginButton.setTitleColor(loginText, for: .normal)
+        signupButton.setTitleColor(loginText, for: .normal)
+        
+        signupButton.layer.cornerRadius = 20
+        signupButton.layer.backgroundColor = aquamarine.cgColor
+        signupButton.layer.borderColor = msGreen.cgColor
+        signupButton.layer.borderWidth = 2
+        
+        
+        usernameOutlet.layer.backgroundColor = UIColor.white.cgColor
+        usernameOutlet.layer.cornerRadius = 20
+        usernameOutlet.layer.borderWidth = 2
+        usernameOutlet.layer.borderColor = msGreen.cgColor
+        usernameOutlet.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        passwordOutlet.layer.cornerRadius = 20
+        passwordOutlet.layer.backgroundColor = UIColor.white.cgColor
+        passwordOutlet.layer.borderWidth = 2
+        passwordOutlet.layer.borderColor = msGreen.cgColor
+        passwordOutlet.borderStyle = UITextField.BorderStyle.roundedRect
+        
     }
     
     /*
@@ -77,5 +113,23 @@ class LoginViewController : UIViewController{
         let signupController = self.storyboard?.instantiateViewController(withIdentifier: "SignupView") as! SignupViewController
 
         self.show(signupController, sender: self)
+    }
+}
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
     }
 }

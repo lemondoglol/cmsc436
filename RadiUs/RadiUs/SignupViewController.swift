@@ -28,9 +28,21 @@ class SignupViewController : UIViewController{
     @IBOutlet weak var usernameOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
+    @IBOutlet weak var createAccountButton: UIButton!
+    
+    let msGreen = UIColor(rgb: 0x00FA9A)
+    let lightGreen = UIColor(rgb: 0x90EE90)
+    let aliceBlue = UIColor(rgb: 0xF0F8FF)
+    let lavendar = UIColor(rgb: 0xE6EEFA)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         databaseRef = Database.database().reference()
+        
+        createAccountButton.layer.cornerRadius = 20
+        createAccountButton.layer.backgroundColor = lightGreen.cgColor
+        createAccountButton.layer.borderColor = msGreen.cgColor
+        createAccountButton.layer.borderWidth = 2
     }
     
     /*
