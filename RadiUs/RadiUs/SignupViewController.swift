@@ -44,7 +44,6 @@ class SignupViewController : UIViewController{
      Currently have no fields for first name and last name (I'll edit this function later after we have those fields in the storyboard).
      */
     @IBAction func createAccountAction(_ sender: UIButton) {
-        print("pressed")
         if let usernameText = usernameOutlet.text {
             if let passwordText = passwordOutlet.text {
                 
@@ -59,7 +58,6 @@ class SignupViewController : UIViewController{
     
     func hasValidUsername() -> Bool {
         if let usernameText = usernameOutlet.text {
-            
             if usernameText.isEmpty {
                 // There's nothing in the username field, so send an alert
                 let alert = UIAlertController(title: "Username cannot be empty", message: "Please enter your preferred username.", preferredStyle: .alert)
@@ -88,7 +86,7 @@ class SignupViewController : UIViewController{
                 let alert = UIAlertController(title: "Password is too short", message: "Your password should contain at least \(MIN_CHARACTERS_NEEDED) characters.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
-                return true
+                return false
             }
             
             if passwordText.contains(".") {
@@ -99,10 +97,15 @@ class SignupViewController : UIViewController{
                 return false
             }
         }
-        return false
+        return true
     }
     
     func storeUserToFirebase(user :User) {
+        print("Adding user to Firebase...")
+        print("First name: \(user.firstName)")
+        print("Last name: \(user.lastName)")
+        print("email: \(user.emailAddress)")
+        print("Password: \(user.password)")
         databaseRef.child("userTable").child(user.emailAddress!).setValue(user.emailAddress)
         databaseRef.child("userTable").child(user.emailAddress!).child("firstName").setValue(user.firstName!)
         databaseRef.child("userTable").child(user.emailAddress!).child("lastName").setValue(user.lastName!)
