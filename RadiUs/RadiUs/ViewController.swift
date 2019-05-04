@@ -59,6 +59,25 @@ class ViewController: UIViewController {
         })
     }
     
+    // sign up verify, if success, then do the segue, call this method before call logIn method
+    func signUpVerify(user: User){
+        databaseRef.child("userTable").observeSingleEvent(of: .value, with: {(snapshot) in
+            var userExist = false
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let userID = child.key
+                if userID == user.emailAddress {
+                    userExist = true;
+                    break;
+                }
+            }
+            if userExist == true {
+                print("user already exist")
+            } else {
+                // you can add this user to the firebase
+            }
+        })
+    }
+    
     // you can run this method to see how it works
     func test() {
         let p1 = Post(postID: "0", content: "good", latitude: 0, longitude: 0)

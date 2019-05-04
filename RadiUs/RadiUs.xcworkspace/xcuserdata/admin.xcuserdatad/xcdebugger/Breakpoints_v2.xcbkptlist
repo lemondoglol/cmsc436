@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RadiUs/ViewController.swift"
-            timestampString = "578105557.298154"
+            timestampString = "578622558.835647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "storeUserToFirebase(user:)"
             landmarkType = "7">
          </BreakpointContent>
