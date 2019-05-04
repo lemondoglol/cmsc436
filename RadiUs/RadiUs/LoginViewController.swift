@@ -22,6 +22,7 @@ class LoginViewController : UIViewController{
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var textInputContainer: UIView!
     
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)
@@ -48,16 +49,20 @@ class LoginViewController : UIViewController{
         
         
         usernameOutlet.layer.backgroundColor = UIColor.white.cgColor
-        usernameOutlet.layer.cornerRadius = 20
-        usernameOutlet.layer.borderWidth = 2
+        usernameOutlet.layer.cornerRadius = 0
+        usernameOutlet.layer.borderWidth = 0
         usernameOutlet.layer.borderColor = msGreen.cgColor
         usernameOutlet.borderStyle = UITextField.BorderStyle.roundedRect
         
-        passwordOutlet.layer.cornerRadius = 20
+        passwordOutlet.layer.cornerRadius = 0
         passwordOutlet.layer.backgroundColor = UIColor.white.cgColor
-        passwordOutlet.layer.borderWidth = 2
+        passwordOutlet.layer.borderWidth = 0
         passwordOutlet.layer.borderColor = msGreen.cgColor
         passwordOutlet.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        textInputContainer.layer.cornerRadius = 20
+        textInputContainer.layer.borderWidth = 2
+        textInputContainer.layer.borderColor = msGreen.cgColor
         
     }
     
@@ -84,8 +89,11 @@ class LoginViewController : UIViewController{
                 let userID = child.key
                 let ps = child.childSnapshot(forPath: "password").value as? String
                 if userID == emailAddress && password == ps {
+                    
                     // do the segues here
                     self.segueToTabBar()
+                    self.usernameOutlet.text = ""
+                    self.passwordOutlet.text = ""
                     print("user logged In")
                     userExist = true;
                     break;
