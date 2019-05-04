@@ -49,14 +49,27 @@ class SignupViewController : UIViewController{
      Currently have no fields for first name and last name (I'll edit this function later after we have those fields in the storyboard).
      */
     @IBAction func createAccountAction(_ sender: UIButton) {
+        
         if let usernameText = usernameOutlet.text {
             if let passwordText = passwordOutlet.text {
                 
                 // Check if the username and password are valid...
                 if hasValidPassword() && hasValidUsername() {
+                    
                     let user = User(firstName: "EDIT_THIS", lastName: "EDIT_THIS", emailAddress: usernameText, password: passwordText)
-                    storeUserToFirebase(user: user)
-                    segueToLogin()
+                    
+                    checkIfUserExists(user: user) { (userExists) in
+                        
+                        if userExists {
+                            let alert = UIAlertController(title: "Username already exists", message: "Please try a different username.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                            
+                        } else {
+                            self.storeUserToFirebase(user: user)
+                            self.segueToLogin()
+                        }
+                    }
                 }
             }
         }
@@ -124,5 +137,19 @@ class SignupViewController : UIViewController{
         databaseRef.child("userTable").child(user.emailAddress!).child("firstName").setValue(user.firstName!)
         databaseRef.child("userTable").child(user.emailAddress!).child("lastName").setValue(user.lastName!)
         databaseRef.child("userTable").child(user.emailAddress!).child("password").setValue(user.password!)
+    }
+    
+    func checkIfUserExists(user: User, completion: @escaping (_ check: Bool) -> ()) {
+        databaseRef.child("userTable").observeSingleEvent(of: .value, with: {(snapshot) in
+            var userExist = false
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let userID = child.key
+                if userID == user.emailAddress {
+                    userExist = true;
+                    break;
+                }
+            }
+            completion(userExist)
+        })
     }
 }
