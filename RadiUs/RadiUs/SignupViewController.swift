@@ -128,7 +128,7 @@ class SignupViewController : UIViewController{
             
             if passwordText.count < MIN_CHARACTERS_NEEDED {
                 // Password is too short, so send an alert
-                let alert = UIAlertController(title: "Password is too short", message: "Your password should contain at least \(MIN_CHARACTERS_NEEDED) characters.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Password is too short", message: "Your password should contain at least \(MIN_CHARACTERS_NEEDED) character.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
                 return false

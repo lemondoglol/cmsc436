@@ -129,10 +129,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="swG-4o-KKE">
-                                <rect key="frame" x="7" y="370" width="400" height="210"/>
+                                <rect key="frame" x="7" y="217.5" width="400" height="515"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logosquare" highlightedImage="logosquare" translatesAutoresizingMaskIntoConstraints="NO" id="cCg-As-6St">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                                    </imageView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azC-IT-ug9">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
+                                        <rect key="frame" x="0.0" y="305" width="400" height="100"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Username" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Svx-dT-T4i">
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
@@ -165,7 +168,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2q1-sF-ot6">
-                                        <rect key="frame" x="0.0" y="105" width="400" height="50"/>
+                                        <rect key="frame" x="0.0" y="410" width="400" height="50"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.97254901959999995" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kG6-Dn-aof"/>
@@ -179,7 +182,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTX-01-WtU">
-                                        <rect key="frame" x="0.0" y="160" width="400" height="50"/>
+                                        <rect key="frame" x="0.0" y="465" width="400" height="50"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.97254901959999995" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="67n-WA-XtD"/>
@@ -364,4 +367,7 @@
             <point key="canvasLocation" x="-1114.4927536231885" y="-19.419642857142858"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logosquare" width="300" height="300"/>
+    </resources>
 </document>
