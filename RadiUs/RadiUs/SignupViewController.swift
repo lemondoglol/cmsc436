@@ -18,13 +18,6 @@ class SignupViewController : UIViewController{
     
     var databaseRef:DatabaseReference!
     
-    /*
-     Justin, you'll have to manually link the text fields to the outlets for both username
-     and password (you can just ctrl-drag from the text field on the storyboard
-     to each outlet). Then you should be fine when you push your storyboard.
-     
-     Also don't forget to do this for the createAccountAction button below
-     */
     @IBOutlet weak var usernameOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
@@ -46,12 +39,12 @@ class SignupViewController : UIViewController{
     }
     
     /*
-     LINK THE BUTTON TO THE OUTLET BELOW (createAccountAction)
+     LINK THE BUTTON TO THE ACTION BELOW (createAccountAction)
      
      For now, we'll allow any non-empty username. Once we sort out that whole mess (where we can't
      use periods), then maybe we'll force the username to be some email.
      
-     We'll also allow any non-empty password. Probably will enforce it to be more strict (certain number of characters).
+     We'll also allow any non-empty password. Probably will enforce it to be more strict (certain number of characters). Make sure the username doesn't already exist.
      
      Currently have no fields for first name and last name (I'll edit this function later after we have those fields in the storyboard).
      */
@@ -63,9 +56,18 @@ class SignupViewController : UIViewController{
                 if hasValidPassword() && hasValidUsername() {
                     let user = User(firstName: "EDIT_THIS", lastName: "EDIT_THIS", emailAddress: usernameText, password: passwordText)
                     storeUserToFirebase(user: user)
+                    segueToLogin()
                 }
             }
         }
+    }
+    
+    func segueToLogin() {
+        let alert = UIAlertController(title: "Sign up successful!", message: "You've successfully created your account! Please log in.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
     }
     
     func hasValidUsername() -> Bool {
