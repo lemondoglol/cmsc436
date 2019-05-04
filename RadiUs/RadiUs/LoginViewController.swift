@@ -27,7 +27,7 @@ class LoginViewController : UIViewController{
     let limeGreen = UIColor(rgb: 0x90EE90)
     let aliceBlue = UIColor(rgb: 0xF0F8FF)
     let aquamarine = UIColor(rgb: 0x7FFFD4)
-    let loginText = UIColor(rgb: 0xFF69B4)
+    let loginText = UIColor(rgb: 0xFA8072)
 
     
     override func viewDidLoad() {
