@@ -123,7 +123,7 @@
         <!--Login View Controller-->
         <scene sceneID="lfe-NR-tTK">
             <objects>
-                <viewController id="gMY-xq-1wX" customClass="LoginViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="gMY-xq-1wX" customClass="LoginViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="LoginViewController" id="tH2-Y9-AbG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -294,6 +294,7 @@
                     <connections>
                         <outlet property="createAccountButton" destination="jW4-qW-Z0Q" id="vmf-th-aKR"/>
                         <outlet property="passwordOutlet" destination="h4L-sm-eru" id="aOj-Ao-NT8"/>
+                        <outlet property="textInputContainer" destination="hkj-70-Emd" id="15J-FE-Hft"/>
                         <outlet property="usernameOutlet" destination="oAp-qi-frW" id="Wxg-eS-bzT"/>
                     </connections>
                 </viewController>
