@@ -36,7 +36,7 @@ class LoginViewController : UIViewController{
         databaseRef = Database.database().reference()
         
         loginButton.layer.cornerRadius = 20
-        loginButton.layer.backgroundColor = limeGreen.cgColor
+        loginButton.layer.backgroundColor = aquamarine.cgColor
         loginButton.layer.borderColor = msGreen.cgColor
         loginButton.layer.borderWidth = 2
         loginButton.setTitleColor(loginText, for: .normal)

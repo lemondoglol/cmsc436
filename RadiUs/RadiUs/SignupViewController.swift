@@ -24,6 +24,9 @@ class SignupViewController : UIViewController{
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var textInputContainer: UIView!
     
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)
     let aliceBlue = UIColor(rgb: 0xF0F8FF)
@@ -50,6 +53,11 @@ class SignupViewController : UIViewController{
         passwordOutlet.layer.borderWidth = 0
         passwordOutlet.layer.borderColor = msGreen.cgColor
         passwordOutlet.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        firstName.layer.backgroundColor = UIColor.white.cgColor
+        firstName.borderStyle = UITextField.BorderStyle.roundedRect
+        lastName.layer.backgroundColor = UIColor.white.cgColor
+        lastName.borderStyle = UITextField.BorderStyle.roundedRect
         
         textInputContainer.layer.cornerRadius = 20
         textInputContainer.layer.borderWidth = 2

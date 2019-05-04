@@ -9,8 +9,22 @@
 import Foundation
 import UIKit
 
+let msGreen = UIColor(rgb: 0x00FA9A)
+let limeGreen = UIColor(rgb: 0x90EE90)
+let aliceBlue = UIColor(rgb: 0xF0F8FF)
+let aquamarine = UIColor(rgb: 0x7FFFD4)
+let loginText = UIColor(rgb: 0xFA8072)
+
 class TabController : UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBar.tintColor = loginText
+        //self.tabBar.unselectedItemTintColor =
+        self.tabBar.barTintColor = limeGreen
+        self.tabBar.backgroundColor = limeGreen
+        tabBar.isTranslucent = false
+        
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)]
+        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
     }
 }

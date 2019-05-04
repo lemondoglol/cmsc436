@@ -23,12 +23,23 @@ class ViewController: UIViewController {
     var currentUser: User!
     var databaseRef:DatabaseReference!
     let locationManager = CLLocationManager()
-
+    
+    let msGreen = UIColor(rgb: 0x00FA9A)
+    let limeGreen = UIColor(rgb: 0x90EE90)
+    let aliceBlue = UIColor(rgb: 0xF0F8FF)
+    let aquamarine = UIColor(rgb: 0x7FFFD4)
+    let loginText = UIColor(rgb: 0xFA8072)
+    @IBOutlet weak var newPostButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         databaseRef = Database.database().reference()
         logIN(firstName: "Ryan", lastName: "Chen", emailAddress: "rc@fakemailcom", password: "abc123")
+        self.view.backgroundColor = aquamarine
+        newPostButton.backgroundColor = limeGreen
+        newPostButton.roundCorners(corners: [.topLeft, .topRight], radius: 40)
+        newPostButton.setTitleColor(loginText, for: .normal)
         // uncomment this to see how it works
         test()
     }
@@ -248,3 +259,11 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIView {
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+}
