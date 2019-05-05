@@ -29,7 +29,6 @@ class ViewController: UIViewController {
     let aliceBlue = UIColor(rgb: 0xF0F8FF)
     let aquamarine = UIColor(rgb: 0x7FFFD4)
     let loginText = UIColor(rgb: 0xFA8072)
-    @IBOutlet weak var newPostButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +36,6 @@ class ViewController: UIViewController {
         databaseRef = Database.database().reference()
         logIN(firstName: "Ryan", lastName: "Chen", emailAddress: "rc@fakemailcom", password: "abc123")
         self.view.backgroundColor = aquamarine
-        newPostButton.backgroundColor = limeGreen
-        newPostButton.roundCorners(corners: [.topLeft, .topRight], radius: 40)
-        newPostButton.setTitleColor(loginText, for: .normal)
         // uncomment this to see how it works
         test()
     }

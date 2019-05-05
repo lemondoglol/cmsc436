@@ -13,7 +13,7 @@
         <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Map" id="BYZ-38-t0r" customClass="ViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="BYZ-38-t0r" customClass="MapViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="1610.144927536232" y="-4.0178571428571423"/>
         </scene>
-        <!--View Controller-->
+        <!--Posts View Controller-->
         <scene sceneID="zfg-Sc-13Z">
             <objects>
-                <viewController id="Ab3-ov-Q8a" customClass="ViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ab3-ov-Q8a" customClass="PostsViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1nQ-NE-DyS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="New Post"/>
                                 <connections>
-                                    <segue destination="Szo-6y-H6G" kind="show" id="5XQ-ho-v6m"/>
+                                    <segue destination="Szo-6y-H6G" kind="show" id="U6k-Ja-uE1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -95,17 +95,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="bRD-iW-Eti"/>
                     <connections>
-                        <outlet property="newPostButton" destination="6Ap-Jj-OZk" id="sbr-t8-6i2"/>
+                        <outlet property="newPostOutlet" destination="6Ap-Jj-OZk" id="RMr-5Q-VBu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7o-7m-2L4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1611.5942028985507" y="-678.34821428571422"/>
         </scene>
-        <!--View Controller-->
+        <!--New Post View Controller-->
         <scene sceneID="5qy-1u-DjQ">
             <objects>
-                <viewController id="Szo-6y-H6G" customClass="ViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Szo-6y-H6G" customClass="NewPostViewController" customModule="RadiUs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C3E-cG-m3e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
