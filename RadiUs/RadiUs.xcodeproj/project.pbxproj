@@ -22,6 +22,9 @@
 		A93856A222765EDA0049846B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93856A122765EDA0049846B /* SettingsVC.swift */; };
 		A93856A6227930900049846B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93856A5227930900049846B /* SignupViewController.swift */; };
 		D838BE75D7A760C268D2923B /* Pods_RadiUs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78FFF0D93A84BAF4F064E8F /* Pods_RadiUs.framework */; };
+		E554C7E4227E8F3F00055835 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554C7E3227E8F3F00055835 /* PostsViewController.swift */; };
+		E554C7E6227E8F6500055835 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554C7E5227E8F6400055835 /* MapViewController.swift */; };
+		E554C7E8227E8F7500055835 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554C7E7227E8F7500055835 /* NewPostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		A93856A5227930900049846B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C2043E3CE3689C46755F7FCE /* Pods-RadiUs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadiUs.debug.xcconfig"; path = "Target Support Files/Pods-RadiUs/Pods-RadiUs.debug.xcconfig"; sourceTree = "<group>"; };
 		D78FFF0D93A84BAF4F064E8F /* Pods_RadiUs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RadiUs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E554C7E3227E8F3F00055835 /* PostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
+		E554C7E5227E8F6400055835 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E554C7E7227E8F7500055835 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		FB32F600CECAA2CC9158C650 /* Pods-RadiUs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadiUs.release.xcconfig"; path = "Target Support Files/Pods-RadiUs/Pods-RadiUs.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +85,9 @@
 		84FE65152269395D00633F7A /* RadiUs */ = {
 			isa = PBXGroup;
 			children = (
+				E554C7E7227E8F7500055835 /* NewPostViewController.swift */,
+				E554C7E5227E8F6400055835 /* MapViewController.swift */,
+				E554C7E3227E8F3F00055835 /* PostsViewController.swift */,
 				84FE65162269395D00633F7A /* AppDelegate.swift */,
 				84FE651A2269395D00633F7A /* Main.storyboard */,
 				A93856A122765EDA0049846B /* SettingsVC.swift */,
@@ -241,11 +250,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A938569E227659E30049846B /* LoginViewController.swift in Sources */,
+				E554C7E8227E8F7500055835 /* NewPostViewController.swift in Sources */,
 				A93856A022765BBC0049846B /* TabController.swift in Sources */,
 				A93856A6227930900049846B /* SignupViewController.swift in Sources */,
 				848B5C222269413300DB6DE0 /* User.swift in Sources */,
 				84FE65192269395D00633F7A /* ViewController.swift in Sources */,
+				E554C7E4227E8F3F00055835 /* PostsViewController.swift in Sources */,
 				848B5C29226ABFEE00DB6DE0 /* Model.xcdatamodeld in Sources */,
+				E554C7E6227E8F6500055835 /* MapViewController.swift in Sources */,
 				848B5C262269458200DB6DE0 /* Post.swift in Sources */,
 				84FE65172269395D00633F7A /* AppDelegate.swift in Sources */,
 				84FE651F2269395D00633F7A /* RadiUs.xcdatamodeld in Sources */,
