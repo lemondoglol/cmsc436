@@ -14,6 +14,9 @@ import Firebase
 import CoreData
 import CoreLocation
 
+/*
+ This View Controller controls the view in which the User creates a new post (the view that shows after pressing New Post).
+ */
 class NewPostViewController: UIViewController {
     
     var databaseRef:DatabaseReference!

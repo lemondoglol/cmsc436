@@ -14,6 +14,9 @@ import Firebase
 import CoreData
 import CoreLocation
 
+/*
+ This View Controller controls the Map tab (the one that displays the map).
+ */
 class MapViewController: UIViewController {
     
     var databaseRef:DatabaseReference!

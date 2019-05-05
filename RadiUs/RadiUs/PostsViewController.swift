@@ -14,6 +14,9 @@ import Firebase
 import CoreData
 import CoreLocation
 
+/*
+ This View Controller controls the view that holds all of the nearby posts (the center tab).
+ */
 class PostsViewController: UIViewController {
     
     var databaseRef:DatabaseReference!
