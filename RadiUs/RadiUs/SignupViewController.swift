@@ -14,6 +14,9 @@ import Firebase
 import CoreData
 import CoreLocation
 
+/*
+ This View Controller controls the View in which the User can create an account.
+ */
 class SignupViewController : UIViewController{
     
     var databaseRef:DatabaseReference!
@@ -65,37 +68,34 @@ class SignupViewController : UIViewController{
     }
     
     /*
-     LINK THE BUTTON TO THE ACTION BELOW (createAccountAction)
-     
      For now, we'll allow any non-empty username. Once we sort out that whole mess (where we can't
      use periods), then maybe we'll force the username to be some email.
      
      We'll also allow any non-empty password. Probably will enforce it to be more strict (certain number of characters). Make sure the username doesn't already exist.
-     
-     Currently have no fields for first name and last name (I'll edit this function later after we have those fields in the storyboard).
+
+     If the username and password are both valid, and if the username doesn't already exist in the Firebase, then add
+     the user to the Firebase.
      */
     @IBAction func createAccountAction(_ sender: UIButton) {
+        // Check if the username and password are valid...
+        if hasValidPassword() && hasValidUsername() {
         
-        if let usernameText = usernameOutlet.text {
-            if let passwordText = passwordOutlet.text {
+            let usernameText = usernameOutlet.text!
+            let passwordText = passwordOutlet.text!
+            let firstNameText = firstName.text!
+            let lastNameText = firstName.text!
+            let user = User(firstName: firstNameText, lastName: lastNameText, emailAddress: usernameText, password: passwordText)
+            
+            checkIfUserExists(user: user) { (userExists) in
                 
-                // Check if the username and password are valid...
-                if hasValidPassword() && hasValidUsername() {
+                if userExists {
+                    let alert = UIAlertController(title: "Username already exists", message: "Please try a different username.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
                     
-                    let user = User(firstName: "EDIT_THIS", lastName: "EDIT_THIS", emailAddress: usernameText, password: passwordText)
-                    
-                    checkIfUserExists(user: user) { (userExists) in
-                        
-                        if userExists {
-                            let alert = UIAlertController(title: "Username already exists", message: "Please try a different username.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true)
-                            
-                        } else {
-                            self.storeUserToFirebase(user: user)
-                            self.segueToLogin()
-                        }
-                    }
+                } else {
+                    self.storeUserToFirebase(user: user)
+                    self.segueToLogin()
                 }
             }
         }

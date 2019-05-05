@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/*
+ This View Controller controls the Settings page.
+ */
 class SettingsVC : UIViewController {
     
     let msGreen = UIColor(rgb: 0x00FA9A)

@@ -18,6 +18,11 @@ import CoreLocation
 // https://radius-9c8dc.firebaseio.com/
 
 // caution. Firebase cant store variables with '.' inside, so make sure emailaddress does not include .
+
+/*
+ This file is just holding all of Ryan's Firebase functions, and currently isn't actually linked to any View.
+ Each View Controller should have its own View in which it controls (so the Map tab has a file called MapViewController.swift).
+ */
 class ViewController: UIViewController {
     
     var currentUser: User!

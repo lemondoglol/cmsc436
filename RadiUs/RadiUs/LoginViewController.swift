@@ -13,6 +13,9 @@ import Firebase
 import CoreData
 import CoreLocation
 
+/*
+ This View Controller controls the View in which the User can log in.
+ */
 class LoginViewController : UIViewController{
     
     var databaseRef:DatabaseReference!
