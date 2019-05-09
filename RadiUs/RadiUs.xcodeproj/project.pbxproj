@@ -85,24 +85,24 @@
 		84FE65152269395D00633F7A /* RadiUs */ = {
 			isa = PBXGroup;
 			children = (
+				84FE651A2269395D00633F7A /* Main.storyboard */,
+				84FE65182269395D00633F7A /* ViewController.swift */,
+				A938569F22765BBC0049846B /* TabController.swift */,
+				E554C7E3227E8F3F00055835 /* PostsViewController.swift */,
 				E554C7E7227E8F7500055835 /* NewPostViewController.swift */,
 				E554C7E5227E8F6400055835 /* MapViewController.swift */,
-				E554C7E3227E8F3F00055835 /* PostsViewController.swift */,
-				84FE65162269395D00633F7A /* AppDelegate.swift */,
-				84FE651A2269395D00633F7A /* Main.storyboard */,
 				A93856A122765EDA0049846B /* SettingsVC.swift */,
 				A938569D227659E30049846B /* LoginViewController.swift */,
 				A93856A5227930900049846B /* SignupViewController.swift */,
+				84FE65162269395D00633F7A /* AppDelegate.swift */,
+				848B5C212269413300DB6DE0 /* User.swift */,
+				848B5C252269458200DB6DE0 /* Post.swift */,
 				84FE65202269396000633F7A /* Assets.xcassets */,
 				84FE65222269396000633F7A /* LaunchScreen.storyboard */,
 				84FE65252269396000633F7A /* Info.plist */,
 				84FE651D2269395D00633F7A /* RadiUs.xcdatamodeld */,
 				848B5C1F22693E9800DB6DE0 /* GoogleService-Info.plist */,
 				848B5C27226ABFEE00DB6DE0 /* Model.xcdatamodeld */,
-				84FE65182269395D00633F7A /* ViewController.swift */,
-				A938569F22765BBC0049846B /* TabController.swift */,
-				848B5C212269413300DB6DE0 /* User.swift */,
-				848B5C252269458200DB6DE0 /* Post.swift */,
 			);
 			path = RadiUs;
 			sourceTree = "<group>";
