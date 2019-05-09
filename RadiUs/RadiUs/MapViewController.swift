@@ -67,9 +67,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print ("error: \(error.localizedDescription)")
     }
     
+    /*
+     This function is called every time a new update comes in from the location manager
+     (so basically whenever the user moves around).
+     First, it centers the map onto the user. It then creates a circle around that user, with
+     a specific radius shown below.
+     */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print ("Update location from MAP")
         centerMap(onLocation: locations.last!.coordinate)
+        mapView.removeOverlays(mapView.overlays) // remove previous circle
+        let radius: CLLocationDistance = mileToMeters(miles: 25)
+        let circle = MKCircle(center: locations.last!.coordinate, radius: radius)
+        mapView.addOverlay(circle)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -79,12 +89,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circle = (overlay as? MKCircle)!
+        let renderer = MKCircleRenderer(circle: circle)
+        renderer.lineWidth = 3
+        renderer.strokeColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        return renderer
+    }
+    
     /*
      Centers the map on a given 2D corrdinate. This function is used whenever the location is updated.
+     You can edit how much we see through that literal below.
      */
     func centerMap(onLocation loc: CLLocationCoordinate2D) {
-        let radius: CLLocationDistance = 1000
+        let radius: CLLocationDistance = mileToMeters(miles: 50)
         let region = MKCoordinateRegion(center: loc, latitudinalMeters: radius, longitudinalMeters: radius)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func mileToMeters(miles: Double) -> Double {
+        return miles * 1609.34
     }
 }
