@@ -113,7 +113,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Find posts around the user
         let currentLat: Double = currentLocation!.latitude
         let currentLong: Double = currentLocation!.longitude
-        findPostsAround(userLatitude: currentLong, userLongtitude: currentLat, range: mileToMeters(miles: searchRadius!))
+        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!))
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -153,7 +153,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
      */
     func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double) {
         var res = [Post]()
-        print("Finding posts within a range of \(range) meters...")
         databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
             var allPosts:[Post] = [Post]()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
@@ -170,17 +169,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 allPosts.append(post)
             }
             // do updating view here
+            let coordinate1 = CLLocation(latitude: userLatitude, longitude: userLongtitude)
             for post in allPosts {
-                let latitudeD = pow(post.latitude! - userLatitude, 2)
-                let longitudeD = pow(post.longitude! - userLongtitude, 2)
-                let distance =  sqrt(latitudeD - longitudeD)
-                if (distance <= range) {
+                let coordinate0 = CLLocation(latitude: post.latitude!, longitude: post.longitude!)
+                let dist =  coordinate1.distance(from: coordinate0)
+                
+                //print("range \(range) distance \(dist) \(post.latitude!) \(post.longitude!) \(userLatitude) \(userLongtitude)")
+                if (dist <= range) {
                     res.append(post)
                 }
             }
             // TODO
             // do updating view here, data was stored in 'res'
-            print("here \(res)")
+            
+            print("here mapview \(res)")
             print("Amount of posts found: \(res.count)")
         })
     }

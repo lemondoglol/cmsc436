@@ -129,11 +129,13 @@ class ViewController: UIViewController {
                 allPosts.append(post)
             }
             // do updating view here
+            let coordinate1 = CLLocation(latitude: userLatitude, longitude: userLongtitude)
             for post in allPosts {
-                let latitudeD = pow(post.latitude! - userLatitude, 2)
-                let longitudeD = pow(post.longitude! - userLongtitude, 2)
-                let distance =  sqrt(latitudeD - longitudeD)
-                if (distance <= range) {
+                let coordinate0 = CLLocation(latitude: post.latitude!, longitude: post.longitude!)
+                let dist =  coordinate1.distance(from: coordinate0)
+                
+                //print("range \(range) distance \(dist) \(post.latitude!) \(post.longitude!) \(userLatitude) \(userLongtitude)")
+                if (dist <= range) {
                     res.append(post)
                 }
             }
