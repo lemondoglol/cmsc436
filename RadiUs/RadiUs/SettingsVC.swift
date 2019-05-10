@@ -20,7 +20,7 @@ class SettingsVC : UIViewController {
      
      Also, the unit we're using is miles.
      */
-    var radius: Double = 5
+    var radius: Double = 60
     
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)

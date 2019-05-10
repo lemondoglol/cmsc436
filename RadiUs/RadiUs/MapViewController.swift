@@ -77,6 +77,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             print("Trying to request permission...")
             locationManager.requestWhenInUseAuthorization()
         }
+        
+        currentLocation = locationManager.location?.coordinate
+        
+        mapView.removeAnnotations(mapView.annotations)
+        
+        // Find posts around user and annotate those posts
+        let currentLat: Double = currentLocation!.latitude
+        let currentLong: Double = currentLocation!.longitude
+        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!)) { (posts) in
+            for post in posts {
+                // print("Adding annotation of post: \(post.postID)")
+                let postAnnotation = MKPointAnnotation()
+                postAnnotation.title = post.postID
+                postAnnotation.subtitle = post.content
+                let postCoordinate = CLLocationCoordinate2D(latitude: post.latitude!, longitude: post.longitude!)
+                postAnnotation.coordinate = postCoordinate
+                self.mapView.addAnnotation(postAnnotation)
+            }
+        }
     }
     
     /*
@@ -109,11 +128,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.addOverlay(circle)
         
         currentLocation = locations.last!.coordinate
-        
-        // Find posts around the user
-        let currentLat: Double = currentLocation!.latitude
-        let currentLong: Double = currentLocation!.longitude
-        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!))
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -131,12 +145,28 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return renderer
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
+    }
+    
     /*
      Centers the map on a given 2D corrdinate. This function is used whenever the location is updated.
-     For now, the region will be the search-radius plus some constant
+     The region scales with how big the searchRadius is
      */
     func centerMap(onLocation loc: CLLocationCoordinate2D) {
-        let calculatedExpansion = searchRadius! + 25.0
+        let calculatedExpansion = (searchRadius! * 2) + (searchRadius! * 0.5)
         let regionRadius: CLLocationDistance = mileToMeters(miles: calculatedExpansion)
         let region = MKCoordinateRegion(center: loc, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(region, animated: true)
@@ -151,7 +181,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
      Although we're using miles as the unit, we always use mileToMeters() (look above) when dealing with
      CLLocation stuff, 'cause they like meters. The range parameter will usually, correctly be in meters.
      */
-    func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double) {
+    func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double, completion: @escaping (_ posts: [Post]) -> ()) {
         var res = [Post]()
         databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
             var allPosts:[Post] = [Post]()
@@ -181,9 +211,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             // TODO
             // do updating view here, data was stored in 'res'
-            
-            print("here mapview \(res)")
             print("Amount of posts found: \(res.count)")
+            completion(res)
         })
     }
 }
