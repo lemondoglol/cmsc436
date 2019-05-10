@@ -23,6 +23,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var databaseRef:DatabaseReference!
     
     var locationManager = CLLocationManager()
+    var currentLocation: CLLocationCoordinate2D?
+    
+    var searchRadius: Double?
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -47,6 +50,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
+        // Set up map
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+    }
+    
+    /*
+     Since we're using tab bar controllers, it'll be useful to use viewDidAppear(). Whenever the user
+     switches to this tab, it'll load all of the annotations and will start updating locations again.
+     */
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        print("viewDidAppear() called from MAP")
+        
+        // Get the radius from the settings tab
+        let settingsVC = tabBarController!.viewControllers![2] as! SettingsVC
+        searchRadius = settingsVC.radius
+        
+        // Request location upon switching tab, forcing the map to center on the user. This will call the
+        // didUpdateLocations for the locationManager
         if CLLocationManager.authorizationStatus() == .authorizedAlways ||
             CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             print("Permission granted, so start tracking")
@@ -55,16 +77,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             print("Trying to request permission...")
             locationManager.requestWhenInUseAuthorization()
         }
-        
-        locationManager.requestLocation()
-        
-        // Set up map
-        mapView.delegate = self
-        mapView.showsUserLocation = true
     }
     
+    /*
+     When the user switches tab, stop updating the location.
+     */
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        print("viewDidDisappear() called from MAP")
+        locationManager.stopUpdatingLocation()
+    }
+    
+    // Ignore this usually; will only be called when the simulator doesn't have a location set
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print ("error: \(error.localizedDescription)")
+        print ("error: \(error.localizedDescription) ... Make sure to set a location in the simulator through Debug -> Location...")
     }
     
     /*
@@ -76,10 +102,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print ("Update location from MAP")
         centerMap(onLocation: locations.last!.coordinate)
+        
         mapView.removeOverlays(mapView.overlays) // remove previous circle
-        let radius: CLLocationDistance = mileToMeters(miles: 25)
-        let circle = MKCircle(center: locations.last!.coordinate, radius: radius)
+        let circleRadius: CLLocationDistance = mileToMeters(miles: searchRadius!)
+        let circle = MKCircle(center: locations.last!.coordinate, radius: circleRadius)
         mapView.addOverlay(circle)
+        
+        currentLocation = locations.last!.coordinate
+        
+        // Find posts around the user
+        let currentLat: Double = currentLocation!.latitude
+        let currentLong: Double = currentLocation!.longitude
+        findPostsAround(userLatitude: currentLong, userLongtitude: currentLat, range: mileToMeters(miles: searchRadius!))
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -99,15 +133,55 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     /*
      Centers the map on a given 2D corrdinate. This function is used whenever the location is updated.
-     You can edit how much we see through that literal below.
+     For now, the region will be the search-radius plus some constant
      */
     func centerMap(onLocation loc: CLLocationCoordinate2D) {
-        let radius: CLLocationDistance = mileToMeters(miles: 50)
-        let region = MKCoordinateRegion(center: loc, latitudinalMeters: radius, longitudinalMeters: radius)
+        let calculatedExpansion = searchRadius! + 25.0
+        let regionRadius: CLLocationDistance = mileToMeters(miles: calculatedExpansion)
+        let region = MKCoordinateRegion(center: loc, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(region, animated: true)
     }
     
+    // Give it miles, it returns meters. Useful for handling CLLocation stuff.
     func mileToMeters(miles: Double) -> Double {
         return miles * 1609.34
+    }
+    
+    /*
+     Although we're using miles as the unit, we always use mileToMeters() (look above) when dealing with
+     CLLocation stuff, 'cause they like meters. The range parameter will usually, correctly be in meters.
+     */
+    func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double) {
+        var res = [Post]()
+        print("Finding posts within a range of \(range) meters...")
+        databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
+            var allPosts:[Post] = [Post]()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let postID = child.key
+                let content = child.childSnapshot(forPath: "content").value as? String
+                let latitude = child.childSnapshot(forPath: "latitude").value as? Double
+                let longitude = child.childSnapshot(forPath: "longitude").value as? Double
+                var comments = child.childSnapshot(forPath: "comments").value as? [String]
+                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!)
+                if comments == nil {
+                    comments = [String]()
+                }
+                post.comments = comments!
+                allPosts.append(post)
+            }
+            // do updating view here
+            for post in allPosts {
+                let latitudeD = pow(post.latitude! - userLatitude, 2)
+                let longitudeD = pow(post.longitude! - userLongtitude, 2)
+                let distance =  sqrt(latitudeD - longitudeD)
+                if (distance <= range) {
+                    res.append(post)
+                }
+            }
+            // TODO
+            // do updating view here, data was stored in 'res'
+            print("here \(res)")
+            print("Amount of posts found: \(res.count)")
+        })
     }
 }
