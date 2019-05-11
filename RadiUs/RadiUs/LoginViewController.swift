@@ -38,14 +38,14 @@ class LoginViewController : UIViewController{
         super.viewDidLoad()
         databaseRef = Database.database().reference()
         
-        loginButton.layer.cornerRadius = 20
+        loginButton.layer.cornerRadius = 25
         loginButton.layer.backgroundColor = aquamarine.cgColor
         loginButton.layer.borderColor = msGreen.cgColor
         loginButton.layer.borderWidth = 2
         loginButton.setTitleColor(loginText, for: .normal)
         signupButton.setTitleColor(loginText, for: .normal)
         
-        signupButton.layer.cornerRadius = 20
+        signupButton.layer.cornerRadius = 25
         signupButton.layer.backgroundColor = aquamarine.cgColor
         signupButton.layer.borderColor = msGreen.cgColor
         signupButton.layer.borderWidth = 2
@@ -63,7 +63,7 @@ class LoginViewController : UIViewController{
         passwordOutlet.layer.borderColor = msGreen.cgColor
         passwordOutlet.borderStyle = UITextField.BorderStyle.roundedRect
         
-        textInputContainer.layer.cornerRadius = 20
+        textInputContainer.layer.cornerRadius = 25
         textInputContainer.layer.borderWidth = 2
         textInputContainer.layer.borderColor = msGreen.cgColor
         

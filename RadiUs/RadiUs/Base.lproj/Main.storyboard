@@ -48,21 +48,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="op7-pB-H9e">
-                                <rect key="frame" x="169" y="771" width="76" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYH-2k-CkL">
+                                <rect key="frame" x="0.0" y="743" width="414" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="HIG-ug-t4y"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
-                                    <action selector="logout:" destination="wzV-iS-n5D" eventType="touchUpInside" id="W7Z-q7-l7W"/>
+                                    <action selector="logout:" destination="wzV-iS-n5D" eventType="touchUpInside" id="soX-UT-BIo"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TYH-2k-CkL" firstAttribute="bottom" secondItem="cPS-it-2A4" secondAttribute="bottom" id="B5I-5r-9io"/>
+                            <constraint firstItem="cPS-it-2A4" firstAttribute="trailing" secondItem="TYH-2k-CkL" secondAttribute="trailing" id="Mkt-jg-ACS"/>
+                            <constraint firstItem="TYH-2k-CkL" firstAttribute="leading" secondItem="cPS-it-2A4" secondAttribute="leading" id="ZHm-e5-ZCo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cPS-it-2A4"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="ZEq-tl-LHS"/>
                     <navigationItem key="navigationItem" id="lne-D0-4H8"/>
+                    <connections>
+                        <outlet property="logoutButtonOutlet" destination="TYH-2k-CkL" id="rN4-tS-dxr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ywk-Xg-4Dd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -77,9 +87,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ap-Jj-OZk">
-                                <rect key="frame" x="0.0" y="738" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="743" width="414" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="ef9-Ob-5eI"/>
+                                    <constraint firstAttribute="height" constant="70" id="ef9-Ob-5eI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="New Post"/>
@@ -87,9 +97,10 @@
                                     <segue destination="Szo-6y-H6G" kind="show" id="U6k-Ja-uE1"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EzL-OI-EKA">
-                                <rect key="frame" x="0.0" y="88" width="414" height="646.5"/>
+                            <tableView clipsSubviews="YES" alpha="0.67000000000000004" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EzL-OI-EKA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="655"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.68627450980000004" green="0.97254901959999995" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" id="cYb-uY-4H6" customClass="PostCell" customModule="RadiUs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -117,8 +128,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ywm-q6-vIj" firstAttribute="bottom" secondItem="6Ap-Jj-OZk" secondAttribute="bottom" id="5Kw-Mk-jVv"/>
-                            <constraint firstItem="6Ap-Jj-OZk" firstAttribute="firstBaseline" secondItem="EzL-OI-EKA" secondAttribute="baseline" constant="50" id="Jqp-Yk-Qeo"/>
                             <constraint firstItem="EzL-OI-EKA" firstAttribute="leading" secondItem="ywm-q6-vIj" secondAttribute="leading" id="KMl-Hn-PY5"/>
+                            <constraint firstItem="6Ap-Jj-OZk" firstAttribute="top" secondItem="EzL-OI-EKA" secondAttribute="bottom" id="Lto-DK-SGJ"/>
                             <constraint firstItem="ywm-q6-vIj" firstAttribute="trailing" secondItem="6Ap-Jj-OZk" secondAttribute="trailing" id="RvU-Oj-w5U"/>
                             <constraint firstItem="6Ap-Jj-OZk" firstAttribute="leading" secondItem="ywm-q6-vIj" secondAttribute="leading" id="rkz-CX-ysl"/>
                             <constraint firstItem="ywm-q6-vIj" firstAttribute="trailing" secondItem="EzL-OI-EKA" secondAttribute="trailing" id="u7E-vv-ZGG"/>
@@ -144,17 +155,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Text fields go here for new post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-BP-gY4">
-                                <rect key="frame" x="41" y="433" width="333" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeS-mH-vpv">
+                                <rect key="frame" x="0.0" y="743" width="414" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="iBd-qP-b6Z"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Send"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PeS-mH-vpv" firstAttribute="trailing" secondItem="Qg8-7D-ugx" secondAttribute="trailing" id="0d1-S0-H8p"/>
+                            <constraint firstItem="PeS-mH-vpv" firstAttribute="leading" secondItem="Qg8-7D-ugx" secondAttribute="leading" id="b8c-9J-SSj"/>
+                            <constraint firstItem="Qg8-7D-ugx" firstAttribute="bottom" secondItem="PeS-mH-vpv" secondAttribute="bottom" id="cXF-Zu-O1g"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Qg8-7D-ugx"/>
                     </view>
+                    <connections>
+                        <outlet property="publicPostOutlet" destination="PeS-mH-vpv" id="dxf-Tw-pq3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DzN-Uc-e6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

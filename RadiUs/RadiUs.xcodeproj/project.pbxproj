@@ -17,6 +17,7 @@
 		84FE651F2269395D00633F7A /* RadiUs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84FE651D2269395D00633F7A /* RadiUs.xcdatamodeld */; };
 		84FE65212269396000633F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FE65202269396000633F7A /* Assets.xcassets */; };
 		84FE65242269396000633F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FE65222269396000633F7A /* LaunchScreen.storyboard */; };
+		A933FC2322874E5700D1DD2E /* TDRoundedNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A933FC2222874E5700D1DD2E /* TDRoundedNavigationBar.swift */; };
 		A938569E227659E30049846B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A938569D227659E30049846B /* LoginViewController.swift */; };
 		A93856A022765BBC0049846B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A938569F22765BBC0049846B /* TabController.swift */; };
 		A93856A222765EDA0049846B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93856A122765EDA0049846B /* SettingsVC.swift */; };
@@ -42,6 +43,7 @@
 		84FE65202269396000633F7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84FE65232269396000633F7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84FE65252269396000633F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A933FC2222874E5700D1DD2E /* TDRoundedNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDRoundedNavigationBar.swift; sourceTree = "<group>"; };
 		A938569D227659E30049846B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A938569F22765BBC0049846B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		A93856A122765EDA0049846B /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		84FE65152269395D00633F7A /* RadiUs */ = {
 			isa = PBXGroup;
 			children = (
+				A933FC2222874E5700D1DD2E /* TDRoundedNavigationBar.swift */,
 				84FE651A2269395D00633F7A /* Main.storyboard */,
 				84FE65182269395D00633F7A /* ViewController.swift */,
 				A938569F22765BBC0049846B /* TabController.swift */,
@@ -260,6 +263,7 @@
 				A93856A022765BBC0049846B /* TabController.swift in Sources */,
 				A93856A6227930900049846B /* SignupViewController.swift in Sources */,
 				848B5C222269413300DB6DE0 /* User.swift in Sources */,
+				A933FC2322874E5700D1DD2E /* TDRoundedNavigationBar.swift in Sources */,
 				84FE65192269395D00633F7A /* ViewController.swift in Sources */,
 				E5EEA36A228655C50086821A /* PostAndRepliesViewController.swift in Sources */,
 				E554C7E4227E8F3F00055835 /* PostsViewController.swift in Sources */,

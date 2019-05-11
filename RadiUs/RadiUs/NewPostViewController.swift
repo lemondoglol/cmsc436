@@ -19,6 +19,7 @@ import CoreLocation
  */
 class NewPostViewController: UIViewController {
     
+    @IBOutlet weak var publicPostOutlet: UIButton!
     var databaseRef:DatabaseReference!
     
     let msGreen = UIColor(rgb: 0x00FA9A)
@@ -32,5 +33,9 @@ class NewPostViewController: UIViewController {
         // Do any additional setup after loading the view.
         databaseRef = Database.database().reference()
         self.view.backgroundColor = aquamarine
+        publicPostOutlet.layer.backgroundColor = limeGreen.cgColor
+        publicPostOutlet.roundCorners(corners: [.topLeft, .topRight], radius: 50)
+        
+        publicPostOutlet.setTitleColor(loginText, for: .normal)
     }
 }

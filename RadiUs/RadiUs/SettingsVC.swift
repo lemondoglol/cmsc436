@@ -22,6 +22,7 @@ class SettingsVC : UIViewController {
      */
     var radius: Double = 60
     
+    @IBOutlet weak var logoutButtonOutlet: UIButton!
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)
     let aliceBlue = UIColor(rgb: 0xF0F8FF)
@@ -31,6 +32,10 @@ class SettingsVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = aquamarine
+        logoutButtonOutlet.layer.backgroundColor = limeGreen.cgColor
+        logoutButtonOutlet.roundCorners(corners: [.allCorners], radius: 50)
+        
+        logoutButtonOutlet.setTitleColor(loginText, for: .normal)
     }
     
     @IBAction func logout(_ sender: Any) {
