@@ -17,12 +17,23 @@ import CoreLocation
 /*
  This View Controller controls the view that holds all of the nearby posts (the center tab).
  */
-class PostsViewController: UIViewController, CLLocationManagerDelegate {
+class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
     
     var databaseRef:DatabaseReference!
     
     var locationManager = CLLocationManager()
     var previousLocation: CLLocation?
+    
+    @IBOutlet weak var tableViewOutlet: UITableView!
     
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)

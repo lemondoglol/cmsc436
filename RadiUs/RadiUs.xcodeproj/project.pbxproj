@@ -25,6 +25,8 @@
 		E554C7E4227E8F3F00055835 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554C7E3227E8F3F00055835 /* PostsViewController.swift */; };
 		E554C7E6227E8F6500055835 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554C7E5227E8F6400055835 /* MapViewController.swift */; };
 		E554C7E8227E8F7500055835 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554C7E7227E8F7500055835 /* NewPostViewController.swift */; };
+		E5EEA368228654D00086821A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA367228654D00086821A /* PostCell.swift */; };
+		E5EEA36A228655C50086821A /* PostAndRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA369228655C50086821A /* PostAndRepliesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		E554C7E3227E8F3F00055835 /* PostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		E554C7E5227E8F6400055835 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E554C7E7227E8F7500055835 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		E5EEA367228654D00086821A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		E5EEA369228655C50086821A /* PostAndRepliesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAndRepliesViewController.swift; sourceTree = "<group>"; };
 		FB32F600CECAA2CC9158C650 /* Pods-RadiUs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadiUs.release.xcconfig"; path = "Target Support Files/Pods-RadiUs/Pods-RadiUs.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +94,8 @@
 				A938569F22765BBC0049846B /* TabController.swift */,
 				E554C7E5227E8F6400055835 /* MapViewController.swift */,
 				E554C7E3227E8F3F00055835 /* PostsViewController.swift */,
+				E5EEA367228654D00086821A /* PostCell.swift */,
+				E5EEA369228655C50086821A /* PostAndRepliesViewController.swift */,
 				E554C7E7227E8F7500055835 /* NewPostViewController.swift */,
 				A93856A122765EDA0049846B /* SettingsVC.swift */,
 				A938569D227659E30049846B /* LoginViewController.swift */,
@@ -255,7 +261,9 @@
 				A93856A6227930900049846B /* SignupViewController.swift in Sources */,
 				848B5C222269413300DB6DE0 /* User.swift in Sources */,
 				84FE65192269395D00633F7A /* ViewController.swift in Sources */,
+				E5EEA36A228655C50086821A /* PostAndRepliesViewController.swift in Sources */,
 				E554C7E4227E8F3F00055835 /* PostsViewController.swift in Sources */,
+				E5EEA368228654D00086821A /* PostCell.swift in Sources */,
 				848B5C29226ABFEE00DB6DE0 /* Model.xcdatamodeld in Sources */,
 				E554C7E6227E8F6500055835 /* MapViewController.swift in Sources */,
 				848B5C262269458200DB6DE0 /* Post.swift in Sources */,
