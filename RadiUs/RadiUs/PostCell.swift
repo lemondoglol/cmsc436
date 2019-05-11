@@ -19,4 +19,7 @@ import CoreLocation
  */
 class PostCell: UITableViewCell {
     
+    @IBOutlet weak var postLabelOutlet: UILabel!
+    
+    
 }
