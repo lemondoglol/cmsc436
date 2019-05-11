@@ -24,7 +24,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D?
-    
     var searchRadius: Double?
     
     @IBOutlet weak var mapView: MKMapView!
