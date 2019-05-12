@@ -20,7 +20,9 @@ import MapKit
  */
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    var databaseRef:DatabaseReference!
+    var databaseRef: DatabaseReference!
+    
+    var tappedPost: Post?
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D?
@@ -70,7 +72,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // didUpdateLocations for the locationManager
         if CLLocationManager.authorizationStatus() == .authorizedAlways ||
             CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            print("Permission granted, so start tracking")
             locationManager.startUpdatingLocation()
         } else {
             print("Trying to request permission...")
@@ -79,22 +80,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         currentLocation = locationManager.location?.coordinate
         
+        // Refresh the visible annotations
         mapView.removeAnnotations(mapView.annotations)
-        
-        // Find posts around user and annotate those posts
-        let currentLat: Double = currentLocation!.latitude
-        let currentLong: Double = currentLocation!.longitude
-        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!)) { (posts) in
-            for post in posts {
-                // print("Adding annotation of post: \(post.postID)")
-                let postAnnotation = MKPointAnnotation()
-                postAnnotation.title = post.postID
-                postAnnotation.subtitle = post.content
-                let postCoordinate = CLLocationCoordinate2D(latitude: post.latitude!, longitude: post.longitude!)
-                postAnnotation.coordinate = postCoordinate
-                self.mapView.addAnnotation(postAnnotation)
-            }
-        }
+        setupAnnotations()
     }
     
     /*
@@ -104,6 +92,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.viewDidDisappear(true)
         print("viewDidDisappear() called from MAP")
         locationManager.stopUpdatingLocation()
+    }
+    
+    /*
+     Sets up all the annotations using our custom PostAnnotation class. Each annotation contains a Post.
+     */
+    func setupAnnotations() {
+        let currentLat: Double = currentLocation!.latitude
+        let currentLong: Double = currentLocation!.longitude
+        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!)) { (posts) in
+            for post in posts {
+                // print("Adding annotation of post: \(post.postID)")
+                let postAnnotation = PostAnnotation(post)
+                // postAnnotation.title = post.postID
+                // postAnnotation.subtitle = post.content
+                // let postCoordinate = CLLocationCoordinate2D(latitude: post.latitude!, longitude: post.longitude!)
+                // postAnnotation.coordinate = postCoordinate
+                self.mapView.addAnnotation(postAnnotation)
+            }
+        }
     }
     
     // Ignore this usually; will only be called when the simulator doesn't have a location set
@@ -145,7 +152,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
+        guard annotation is PostAnnotation else { return nil }
         
         let identifier = "Annotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
@@ -153,11 +160,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView!.canShowCallout = true
+            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         } else {
             annotationView!.annotation = annotation
         }
         
         return annotationView
+    }
+    
+    /*
+     This function controls what happens when the user taps on the (i) on the right side of the annotation view. It will send the user
+     to the PostAndReplies View with the contents being the tapped Post's contents.
+     TODO: connect the segue in the storyboard. Make a navigation controller for the map.
+     */
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let postAnnotation = view.annotation as! PostAnnotation
+        tappedPost = postAnnotation.thisPost
+        performSegue(withIdentifier: "mapToPostSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapToPostSegue" {
+            let postAndRepliesVC = segue.destination as! PostAndRepliesViewController
+            postAndRepliesVC.post = tappedPost // send the post information over
+        }
     }
     
     /*

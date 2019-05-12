@@ -22,6 +22,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     var databaseRef:DatabaseReference!
     
     var visiblePosts = [Post]()
+    var tappedPost: Post?
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D?
@@ -74,7 +75,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     }
     
     /*
-     When the User switches to the Posts tab,
+     When the User switches to the Posts tab...
      */
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -106,12 +107,13 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
             locationManager.startUpdatingLocation()
         } else {
             locationManager.requestWhenInUseAuthorization()
-        }  
+        }
     }
     
-    // Called in viewDidAppear()
+    // Called in viewDidAppear() and doRefresh()
     func updateVisiblePosts() {
-        visiblePosts = [Post]() // empty out visiblePosts
+        visiblePosts.removeAll(keepingCapacity: false)
+        tableViewOutlet.reloadData()
         
         currentLocation = locationManager.location?.coordinate
         let currentLat: Double = currentLocation!.latitude
@@ -119,6 +121,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!)) { (posts) in
             for post in posts {
                 self.visiblePosts.append(post)
+                self.sortPostsByDistance()
                 self.tableViewOutlet.reloadData()
             }
         }
@@ -143,13 +146,27 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     }
     
     /*
-     Function for tapping on a cell. Right now, we're just normally showing the postAndReplies view, but we'll have to do a proper
-     segue so we can actually send the correct Post and display that post correctly.
+     Function for tapping on a cell. When a user taps on the cell, a segue will be performed. We
+     use a formal segue for this because we need to send the specific Post data to the new view.
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableViewOutlet.deselectRow(at: indexPath, animated: true)
-        let postAndReplies = self.storyboard?.instantiateViewController(withIdentifier: "PostAndRepliesViewController") as! PostAndRepliesViewController
-        self.show(postAndReplies, sender: self)
+        tappedPost = visiblePosts[indexPath.row]
+        performSegue(withIdentifier: "postAndRepliesSegue", sender: self)
+    }
+    
+    /*
+     TODO: create the actual segue in the storyboard. Need to create the postAndReplies segue
+     and the NewPost segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "postAndRepliesSegue" {
+            let postAndRepliesVC = segue.destination as! PostAndRepliesViewController
+            postAndRepliesVC.post = tappedPost // send the post information over
+        } else if segue.identifier == "newPostSegue" {
+            let newPostVC = segue.destination as! NewPostViewController
+            newPostVC.currentLocation = self.currentLocation
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -211,8 +228,15 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         return miles * 1609.34
     }
     
-    @IBAction func testAc(_ sender: UIButton) {
-        print("num of posts i see: \(tableViewOutlet.numberOfRows(inSection: 0))")
-        print("num of sections i see: \(tableViewOutlet.numberOfSections)")
+    func sortPostsByDistance() {
+        visiblePosts.sort { (p1, p2) -> Bool in
+            let p1Coordinate = CLLocation(latitude: p1.latitude!, longitude: p1.longitude!)
+            let p2Coordinate = CLLocation(latitude: p2.latitude!, longitude: p2.longitude!)
+            let currentCoord = CLLocation(latitude: currentLocation!.latitude, longitude: currentLocation!.longitude)
+            
+            let p1Distance = p1Coordinate.distance(from: currentCoord)
+            let p2Distance = p2Coordinate.distance(from: currentCoord)
+            return p1Distance < p2Distance
+        }
     }
 }
