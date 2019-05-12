@@ -56,7 +56,7 @@
 		E554C7E5227E8F6400055835 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E554C7E7227E8F7500055835 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		E5EC39DD2288A3AD008D1ECD /* ReplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCell.swift; sourceTree = "<group>"; };
-		E5EC39DF2288A3D3008D1ECD /* PostAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostAnnotation.swift; path = /Users/justinvo/Desktop/cmsc436Group/cmsc436/RadiUs/RadiUs/PostAnnotation.swift; sourceTree = "<absolute>"; };
+		E5EC39DF2288A3D3008D1ECD /* PostAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnnotation.swift; sourceTree = "<group>"; };
 		E5EEA367228654D00086821A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		E5EEA369228655C50086821A /* PostAndRepliesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAndRepliesViewController.swift; sourceTree = "<group>"; };
 		FB32F600CECAA2CC9158C650 /* Pods-RadiUs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RadiUs.release.xcconfig"; path = "Target Support Files/Pods-RadiUs/Pods-RadiUs.release.xcconfig"; sourceTree = "<group>"; };
