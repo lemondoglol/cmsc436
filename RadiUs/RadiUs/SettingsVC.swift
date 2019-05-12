@@ -33,7 +33,7 @@ class SettingsVC : UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = aquamarine
         logoutButtonOutlet.layer.backgroundColor = limeGreen.cgColor
-        logoutButtonOutlet.roundCorners(corners: [.allCorners], radius: 50)
+        logoutButtonOutlet.roundCorners(corners: [.allCorners], radius: 40)
         
         logoutButtonOutlet.setTitleColor(loginText, for: .normal)
     }

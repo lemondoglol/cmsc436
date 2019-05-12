@@ -34,7 +34,7 @@ class NewPostViewController: UIViewController {
         databaseRef = Database.database().reference()
         self.view.backgroundColor = aquamarine
         publicPostOutlet.layer.backgroundColor = limeGreen.cgColor
-        publicPostOutlet.roundCorners(corners: [.topLeft, .topRight], radius: 50)
+        publicPostOutlet.roundCorners(corners: [.topLeft, .topRight], radius: 40)
         
         publicPostOutlet.setTitleColor(loginText, for: .normal)
     }

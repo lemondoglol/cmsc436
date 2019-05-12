@@ -24,17 +24,17 @@ class TabController : UITabBarController{
         self.tabBar.backgroundColor = limeGreen
         tabBar.isTranslucent = false
         
-        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)]
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25.0)]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         //self.tabBar.layer.cornerRadius = 50
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: view.frame.width, height: tabBar.frame.height), cornerRadius: 50)
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        tabBar.layer.mask = mask
-        
-    }
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: view.frame.width, height: tabBar.frame.height), cornerRadius: 40)
+//        let mask = CAShapeLayer()
+//        mask.path = path.cgPath
+//        tabBar.layer.mask = mask
+//
+//    }
 }

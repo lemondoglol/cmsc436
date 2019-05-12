@@ -58,10 +58,10 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         // Set up visuals
         self.view.backgroundColor = aquamarine
         newPostOutlet.backgroundColor = limeGreen
-        newPostOutlet.roundCorners(corners: [.topLeft, .topRight], radius: 50)
+        newPostOutlet.roundCorners(corners: [.topLeft, .topRight], radius: 40)
         newPostOutlet.setTitleColor(loginText, for: .normal)
         
-        tableViewOutlet.roundCorners(corners: [.allCorners], radius: 50)
+        tableViewOutlet.roundCorners(corners: [.allCorners], radius: 40)
         
         // Set up location services
         locationManager.delegate = self

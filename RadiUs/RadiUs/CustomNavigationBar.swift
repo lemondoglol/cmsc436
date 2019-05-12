@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TDRoundedNavigationBar: UINavigationBar {
+public class CustomNavigationBar: UINavigationBar {
     
     @IBInspectable public var height: Double = 60.0 {
         didSet {
@@ -71,17 +71,17 @@ public class TDRoundedNavigationBar: UINavigationBar {
         // Compensate for height change by moving back button
         let offset : CGFloat = (44 - CGFloat(height))/2
         
-        TDRoundedNavigationBar.appearance().setTitleVerticalPositionAdjustment(offset, for: UIBarMetrics.default)
-        TDRoundedNavigationBar.appearance().setTitleVerticalPositionAdjustment(offset - 5, for: UIBarMetrics.compact)
+        CustomNavigationBar.appearance().setTitleVerticalPositionAdjustment(offset, for: UIBarMetrics.default)
+        CustomNavigationBar.appearance().setTitleVerticalPositionAdjustment(offset - 5, for: UIBarMetrics.compact)
         
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [TDRoundedNavigationBar.self]).setBackgroundVerticalPositionAdjustment(offset, for: .default)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [TDRoundedNavigationBar.self]).setBackgroundVerticalPositionAdjustment(offset - 5, for: .compact)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackgroundVerticalPositionAdjustment(offset, for: .default)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackgroundVerticalPositionAdjustment(offset - 5, for: .compact)
         
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [TDRoundedNavigationBar.self]).setBackButtonBackgroundVerticalPositionAdjustment(offset, for: .default)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [TDRoundedNavigationBar.self]).setBackButtonBackgroundVerticalPositionAdjustment(offset - 5, for: .compact)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackButtonBackgroundVerticalPositionAdjustment(offset, for: .default)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackButtonBackgroundVerticalPositionAdjustment(offset - 5, for: .compact)
         
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [TDRoundedNavigationBar.self]).setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: offset), for: .default)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [TDRoundedNavigationBar.self]).setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: offset - 5), for: .compact)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: offset), for: .default)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: offset - 5), for: .compact)
     }
     
     
