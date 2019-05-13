@@ -51,12 +51,16 @@ class SettingsVC : UIViewController {
         setRadiusContainer.layer.borderColor = msGreen.cgColor
         
         radiusEntry.keyboardType = UIKeyboardType.decimalPad
+        
+        radiusEntry.text? = String(radius)
     }
     
     @IBAction func saveRadius(_ sender: Any) {
         radiusEntry.placeholder = radiusEntry.text
         radiusEntry.resignFirstResponder()
         //TODO update radius when pressed
+        let radiusString: String = radiusEntry.text!
+        radius = Double(radiusString) as! Double
     }
     
     @IBAction func logout(_ sender: Any) {
