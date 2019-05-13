@@ -64,6 +64,8 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         
         tableViewOutlet.roundCorners(corners: [.allCorners], radius: 40)
         
+        self.navigationItem.title = "Posts Near You"
+        
         // Set up location services
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -141,6 +143,8 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         if let myCell = cell as? PostCell {
             
             myCell.postLabelOutlet.text = visiblePosts[indexPath.row].content
+            
+            
         }
         return cell
     }

@@ -9,13 +9,14 @@
 import UIKit
 
 public class CustomNavigationBar: UINavigationBar {
+    let limeGreen = UIColor(rgb: 0x90EE90)
     
-    @IBInspectable public var height: Double = 60.0 {
+    @IBInspectable public var height: Double = 70.0 {
         didSet {
             setupAppearance()
         }
     }
-    @IBInspectable public var horizontalSpacing : Double = 20.0 {
+    @IBInspectable public var horizontalSpacing : Double = 50.0 {
         didSet {
             setupAppearance()
         }
@@ -25,11 +26,11 @@ public class CustomNavigationBar: UINavigationBar {
             setupAppearance()
         }
     }
-    @IBInspectable public var roundedTopLeftCorner: Bool = true
-    @IBInspectable public var roundedTopRightCorner: Bool = true
+    @IBInspectable public var roundedTopLeftCorner: Bool = false
+    @IBInspectable public var roundedTopRightCorner: Bool = false
     @IBInspectable public var roundedBottomRightCorner: Bool = true
     @IBInspectable public var roundedBottomLeftCorner: Bool = true
-    @IBInspectable public var cornerRadius : Double = 7.5    //Set to 0.0 for square corners
+    @IBInspectable public var cornerRadius : Double = 40    //Set to 0.0 for square corners
     private var corners: UIRectCorner {
         get {
             var roundedCorners : UIRectCorner = UIRectCorner(rawValue: 0)
@@ -69,7 +70,7 @@ public class CustomNavigationBar: UINavigationBar {
     
     func setupAppearance() {
         // Compensate for height change by moving back button
-        let offset : CGFloat = (44 - CGFloat(height))/2
+        let offset : CGFloat = (70 - CGFloat(height))/2
         
         CustomNavigationBar.appearance().setTitleVerticalPositionAdjustment(offset, for: UIBarMetrics.default)
         CustomNavigationBar.appearance().setTitleVerticalPositionAdjustment(offset - 5, for: UIBarMetrics.compact)
@@ -82,6 +83,8 @@ public class CustomNavigationBar: UINavigationBar {
         
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: offset), for: .default)
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: offset - 5), for: .compact)
+        
+        self.layer.backgroundColor = limeGreen.cgColor
     }
     
     
@@ -89,9 +92,10 @@ public class CustomNavigationBar: UINavigationBar {
         super.layoutSubviews()
         
         let bounds = layer.bounds
-        let maskPath = UIBezierPath(roundedRect: bounds,
+        let maskPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: bounds.size.width, height: CGFloat(height)),
             byRoundingCorners: corners,
             cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+        
         let maskLayer = CAShapeLayer()  //?
         maskLayer.frame = bounds
         maskLayer.path = maskPath.cgPath

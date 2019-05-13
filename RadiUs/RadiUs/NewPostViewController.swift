@@ -41,6 +41,8 @@ class NewPostViewController: UIViewController {
         publicPostOutlet.layer.backgroundColor = limeGreen.cgColor
         publicPostOutlet.roundCorners(corners: [.topLeft, .topRight], radius: 40)
         
+        self.navigationItem.title = "Post Something New"
+        
         publicPostOutlet.setTitleColor(loginText, for: .normal)
     }
     

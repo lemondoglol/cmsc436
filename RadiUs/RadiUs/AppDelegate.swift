@@ -14,6 +14,12 @@ import FirebaseDatabase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let msGreen = UIColor(rgb: 0x00FA9A)
+    let limeGreen = UIColor(rgb: 0x90EE90)
+    let aliceBlue = UIColor(rgb: 0xF0F8FF)
+    let aquamarine = UIColor(rgb: 0x7FFFD4)
+    let loginText = UIColor(rgb: 0xFA8072)
+    
     var window: UIWindow?
 
     static var persistentContainer: NSPersistentContainer {
@@ -26,7 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = loginText
+        navigationBarAppearace.barTintColor = limeGreen
+        
+        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:loginText,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)]
+        
         FirebaseApp.configure()
         return true
     }

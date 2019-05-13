@@ -20,9 +20,13 @@ class SettingsVC : UIViewController {
      
      Also, the unit we're using is miles.
      */
-    var radius: Double = 60
+    var radius: Double = 20
     
+    @IBOutlet weak var saveRadiusButton: UIButton!
     @IBOutlet weak var logoutButtonOutlet: UIButton!
+    @IBOutlet weak var setRadiusContainer: UIView!
+    @IBOutlet weak var radiusEntry: UITextField!
+    
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)
     let aliceBlue = UIColor(rgb: 0xF0F8FF)
@@ -32,10 +36,27 @@ class SettingsVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = aquamarine
+        
         logoutButtonOutlet.layer.backgroundColor = limeGreen.cgColor
-        logoutButtonOutlet.roundCorners(corners: [.allCorners], radius: 40)
+        logoutButtonOutlet.roundCorners(corners: [.topLeft
+            , .topRight], radius: 40)
         
         logoutButtonOutlet.setTitleColor(loginText, for: .normal)
+        
+        saveRadiusButton.setTitleColor(loginText, for: .normal)
+        saveRadiusButton.layer.backgroundColor = limeGreen.cgColor
+        
+        setRadiusContainer.layer.cornerRadius = 25
+        setRadiusContainer.layer.borderWidth = 2
+        setRadiusContainer.layer.borderColor = msGreen.cgColor
+        
+        radiusEntry.keyboardType = UIKeyboardType.decimalPad
+    }
+    
+    @IBAction func saveRadius(_ sender: Any) {
+        radiusEntry.placeholder = radiusEntry.text
+        radiusEntry.resignFirstResponder()
+        //TODO update radius when pressed
     }
     
     @IBAction func logout(_ sender: Any) {

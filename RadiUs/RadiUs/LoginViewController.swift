@@ -20,6 +20,7 @@ class LoginViewController : UIViewController{
     
     var databaseRef:DatabaseReference!
     
+    @IBOutlet weak var appLabel: UILabel!
     @IBOutlet weak var usernameOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
     
@@ -66,6 +67,8 @@ class LoginViewController : UIViewController{
         textInputContainer.layer.cornerRadius = 25
         textInputContainer.layer.borderWidth = 2
         textInputContainer.layer.borderColor = msGreen.cgColor
+        
+        //appLabel.font = UIFont (name: "Nanum Pen Script", size: 36)
         
     }
     

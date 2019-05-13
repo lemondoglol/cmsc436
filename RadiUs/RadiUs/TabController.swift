@@ -24,7 +24,7 @@ class TabController : UITabBarController{
         self.tabBar.backgroundColor = limeGreen
         tabBar.isTranslucent = false
         
-        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25.0)]
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         //self.tabBar.layer.cornerRadius = 50
     }
