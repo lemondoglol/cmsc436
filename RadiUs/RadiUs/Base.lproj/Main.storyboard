@@ -189,21 +189,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwR-Gf-M3k">
-                                                    <rect key="frame" x="25" y="10" width="364" height="54"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwR-Gf-M3k">
+                                                    <rect key="frame" x="25" y="10" width="354" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="QwR-Gf-M3k" firstAttribute="centerY" secondItem="8Mz-8s-bMe" secondAttribute="centerY" id="85P-uK-8XY"/>
+                                                <constraint firstItem="QwR-Gf-M3k" firstAttribute="leading" secondItem="8Mz-8s-bMe" secondAttribute="leading" constant="25" id="9o1-zm-PY0"/>
+                                                <constraint firstAttribute="bottom" secondItem="QwR-Gf-M3k" secondAttribute="bottom" constant="9.5" id="QYu-a1-xMh"/>
+                                                <constraint firstAttribute="trailing" secondItem="QwR-Gf-M3k" secondAttribute="trailing" constant="35" id="nY8-wy-wDG"/>
+                                                <constraint firstItem="QwR-Gf-M3k" firstAttribute="top" secondItem="8Mz-8s-bMe" secondAttribute="top" constant="10" id="wy2-58-u4g"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="QwR-Gf-M3k" secondAttribute="trailing" constant="25" id="MkU-3n-gkU"/>
-                                            <constraint firstItem="QwR-Gf-M3k" firstAttribute="leading" secondItem="cYb-uY-4H6" secondAttribute="leading" constant="25" id="w0V-dA-wsH"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="postLabelOutlet" destination="QwR-Gf-M3k" id="KIk-to-0ZX"/>
                                         </connections>

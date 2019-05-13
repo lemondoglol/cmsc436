@@ -33,6 +33,8 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
             print("set del")
             tableViewOutlet.dataSource = self
             tableViewOutlet.delegate = self
+            tableViewOutlet.rowHeight = UITableView.automaticDimension
+
         }
     }
     
@@ -143,7 +145,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         if let myCell = cell as? PostCell {
             
             myCell.postLabelOutlet.text = visiblePosts[indexPath.row].content
-            
+
             
         }
         return cell
