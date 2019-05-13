@@ -19,7 +19,6 @@ import CoreLocation
  */
 class ReplyCell: UITableViewCell {
     
-    // TODO: connect outlet to storyboard
     @IBOutlet weak var replyLabelOutlet: UILabel!
     
 }

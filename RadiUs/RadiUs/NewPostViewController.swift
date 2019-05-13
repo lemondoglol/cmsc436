@@ -50,8 +50,6 @@ class NewPostViewController: UIViewController {
      Tapping the Send button will create a new post. The empty field in the view where the User can type
      in will be sent as the Post's content, then sent to Firebase. When tapping Send, an alert will pop
      up to notify the user that the Post as been created. Send the user back to the PostsView.
-     
-     TODO: Replace PLACEHOLDER_STRING with the actual text field outlet.
      */
     @IBAction func sendAction(_ sender: UIButton) {
         makeNewPost(content: inputPostOutlet.text, latitude: currentLocation!.latitude, longitude: currentLocation!.longitude)

@@ -171,7 +171,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     /*
      This function controls what happens when the user taps on the (i) on the right side of the annotation view. It will send the user
      to the PostAndReplies View with the contents being the tapped Post's contents.
-     TODO: connect the segue in the storyboard. Make a navigation controller for the map.
      */
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let postAnnotation = view.annotation as! PostAnnotation
@@ -223,19 +222,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 post.comments = comments!
                 allPosts.append(post)
             }
-            // do updating view here
             let coordinate1 = CLLocation(latitude: userLatitude, longitude: userLongtitude)
             for post in allPosts {
                 let coordinate0 = CLLocation(latitude: post.latitude!, longitude: post.longitude!)
                 let dist =  coordinate1.distance(from: coordinate0)
                 
-                //print("range \(range) distance \(dist) \(post.latitude!) \(post.longitude!) \(userLatitude) \(userLongtitude)")
                 if (dist <= range) {
                     res.append(post)
                 }
             }
-            // TODO
-            // do updating view here, data was stored in 'res'
             print("Amount of posts found: \(res.count)")
             completion(res)
         })

@@ -41,6 +41,11 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
         
         // Set up Firebase
         databaseRef = Database.database().reference()
+        
+        // Set up refresh controls (swipe and hold downward to refresh)
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(doRefresh), for: .valueChanged)
+        tableViewOutlet.refreshControl = refresher
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,7 +59,6 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewOutlet.dequeueReusableCell(withIdentifier: "ReplyCell", for: indexPath)
         if let myCell = cell as? ReplyCell {
-            
             myCell.replyLabelOutlet.text = replies![indexPath.row]
         }
         return cell
@@ -69,7 +73,43 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
         return nil
     }
     
-    func makeCommentsOnPost(comment: String, postID: String){
+    @objc func doRefresh() {
+        updateComments()
+        tableViewOutlet.refreshControl?.endRefreshing()
+    }
+    
+    func updateComments() {
+        retrieveSinglePostFromFirebase(postID: post!.postID) { (refreshedPost) in
+            self.replies? = refreshedPost.comments
+            self.tableViewOutlet.reloadData()
+        }
+    }
+    
+    func retrieveSinglePostFromFirebase(postID: String, completion: @escaping (_ p: Post) -> ()) {
+        var res:Post?
+        databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let cID = child.key
+                if cID != postID {
+                    continue
+                }
+                let content = child.childSnapshot(forPath: "content").value as? String
+                let latitude = child.childSnapshot(forPath: "latitude").value as? Double
+                let longitude = child.childSnapshot(forPath: "longitude").value as? Double
+                var comments = child.childSnapshot(forPath: "comments").value as? [String]
+                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!)
+                if comments == nil {
+                    comments = [String]()
+                }
+                post.comments = comments!
+                res = post
+                break
+            }
+            completion(res!)
+        })
+    }
+    
+    func makeCommentsOnPost(comment: String, postID: String) {
         var post:Post!
         databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
@@ -95,5 +135,18 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
             self.databaseRef.child("postTable").child(post.postID).child("longitude").setValue(post.longitude)
             self.databaseRef.child("postTable").child(post.postID).child("comments").setValue(post.comments)
         })
+    }
+    
+    // TODO: make and connect an actual input text field outlet
+    var inputComment = "This is a comment with random number: \(Int.random(in: 0..<100))"
+    func sendComment() {
+        replies?.append(inputComment)
+        tableViewOutlet.reloadData()
+        makeCommentsOnPost(comment: inputComment, postID: post!.postID)
+    }
+    
+    // TODO: remove this (testing purposes)
+    @IBAction func testSendComment(_ sender: UIButton) {
+        sendComment()
     }
 }

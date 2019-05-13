@@ -160,8 +160,9 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     }
     
     /*
-     TODO: create the actual segue in the storyboard. Need to create the postAndReplies segue
-     and the NewPost segue.
+     There's two possible segues:
+     postAndRepliesSegue: tap on post -> PostAndReplies View
+     newPostSegue: tap on New Post button -> NewPost View
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "postAndRepliesSegue" {
