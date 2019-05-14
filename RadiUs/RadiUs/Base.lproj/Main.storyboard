@@ -747,22 +747,22 @@
                                 <rect key="frame" x="8" y="96" width="398" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category will be here" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgu-kE-zjs">
-                                        <rect key="frame" x="245" y="58" width="145" height="18"/>
+                                        <rect key="frame" x="245" y="62" width="145" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.98039215690000003" green="0.50196078430000002" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post content will be in this box" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rn-B1-Kbg">
-                                        <rect key="frame" x="8" y="0.0" width="390" height="50"/>
+                                        <rect key="frame" x="8" y="4" width="382" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="fQz-lr-8kY"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date will be here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKn-zM-jGh">
-                                        <rect key="frame" x="8" y="58" width="114" height="18"/>
+                                        <rect key="frame" x="8" y="62" width="114" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.98039215690000003" green="0.50196078430000002" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -773,9 +773,9 @@
                                     <constraint firstItem="tgu-kE-zjs" firstAttribute="top" secondItem="8rn-B1-Kbg" secondAttribute="bottom" constant="8" id="0Ou-TR-kGB"/>
                                     <constraint firstItem="iKn-zM-jGh" firstAttribute="leading" secondItem="TIs-f7-Aab" secondAttribute="leading" constant="8" id="0Wn-aB-I1r"/>
                                     <constraint firstAttribute="trailing" secondItem="tgu-kE-zjs" secondAttribute="trailing" constant="8" id="9dM-w7-ANe"/>
-                                    <constraint firstAttribute="trailing" secondItem="8rn-B1-Kbg" secondAttribute="trailing" id="9qL-uV-JGb"/>
+                                    <constraint firstAttribute="trailing" secondItem="8rn-B1-Kbg" secondAttribute="trailing" constant="8" id="9qL-uV-JGb"/>
                                     <constraint firstAttribute="height" constant="150" id="DeG-vk-aq5"/>
-                                    <constraint firstItem="8rn-B1-Kbg" firstAttribute="top" secondItem="TIs-f7-Aab" secondAttribute="top" id="T9y-Mk-WtA"/>
+                                    <constraint firstItem="8rn-B1-Kbg" firstAttribute="top" secondItem="TIs-f7-Aab" secondAttribute="top" constant="4" id="T9y-Mk-WtA"/>
                                     <constraint firstItem="8rn-B1-Kbg" firstAttribute="leading" secondItem="TIs-f7-Aab" secondAttribute="leading" constant="8" id="gpc-HZ-d1n"/>
                                     <constraint firstItem="iKn-zM-jGh" firstAttribute="top" secondItem="8rn-B1-Kbg" secondAttribute="bottom" constant="8" id="wQH-O6-4pL"/>
                                 </constraints>
