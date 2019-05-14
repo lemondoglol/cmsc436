@@ -44,22 +44,29 @@ class NewPostViewController: UIViewController {
         switch postTypeSelector.selectedSegmentIndex
         {
         case 0:
-        tagEntryField.isUserInteractionEnabled = true
-        tagEntryField.placeholder = "#YourCustomTag"
+            print("Posting with Custom Tag")
+            tagEntryField.isUserInteractionEnabled = true
+            tagEntryField.placeholder = "#YourCustomTag"
             tagEntryField.text = tagSaver
             addTagButton.isUserInteractionEnabled = true
+            addTagButton.layer.backgroundColor = msGreen.cgColor
+            customTagEntry.layer.borderColor = loginText.cgColor
         case 1:
+            print("Posting with Food Tag")
             tagEntryField.isUserInteractionEnabled = false
             
             if(tagEntryField.placeholder == "#YourCustomTag"){
                 tagSaver = tagEntryField.text ?? ""
+                customTagEntry.layer.borderColor = msGreen.cgColor
             }
             
             tagEntryField.placeholder = "#Food"
             
             tagEntryField.text = "#Food"
             addTagButton.isUserInteractionEnabled = false
+            addTagButton.layer.backgroundColor = aquamarine.cgColor
         case 2:
+            print("Posting with Landmark Tag")
             tagEntryField.isUserInteractionEnabled = false
             
             if(tagEntryField.placeholder == "#YourCustomTag"){
@@ -71,7 +78,10 @@ class NewPostViewController: UIViewController {
             
             tagEntryField.text = "#Landmark"
             addTagButton.isUserInteractionEnabled = false
+            addTagButton.layer.backgroundColor = aquamarine.cgColor
+            customTagEntry.layer.borderColor = msGreen.cgColor
         case 3:
+            print("Posting with Event Tag")
             tagEntryField.isUserInteractionEnabled = false
             
             if(tagEntryField.placeholder == "#YourCustomTag"){
@@ -83,10 +93,13 @@ class NewPostViewController: UIViewController {
             
             tagEntryField.text = "#Event"
             addTagButton.isUserInteractionEnabled = false
+            addTagButton.layer.backgroundColor = aquamarine.cgColor
+            customTagEntry.layer.borderColor = msGreen.cgColor
             
         default:
             break
         }
+
     }
     
     override func viewDidLoad() {

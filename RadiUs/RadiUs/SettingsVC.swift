@@ -27,7 +27,9 @@ class SettingsVC : UIViewController {
     @IBOutlet weak var logoutButtonOutlet: UIButton!
     @IBOutlet weak var setRadiusContainer: UIView!
     @IBOutlet weak var radiusEntry: UITextField!
-    @IBOutlet weak var categorySegOutlet: UISegmentedControl!
+    @IBOutlet weak var postTypeSelector: UISegmentedControl!
+    
+    @IBOutlet weak var milesOrKm: UISegmentedControl!
     
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)
@@ -46,19 +48,47 @@ class SettingsVC : UIViewController {
         logoutButtonOutlet.setTitleColor(loginText, for: .normal)
         
         saveRadiusButton.setTitleColor(loginText, for: .normal)
-        saveRadiusButton.layer.backgroundColor = limeGreen.cgColor
+        saveRadiusButton.layer.backgroundColor = msGreen.cgColor
         
         setRadiusContainer.layer.cornerRadius = 25
         setRadiusContainer.layer.borderWidth = 2
-        setRadiusContainer.layer.borderColor = msGreen.cgColor
+        setRadiusContainer.layer.borderColor = loginText.cgColor
         
         radiusEntry.keyboardType = UIKeyboardType.decimalPad
         
         radiusEntry.text? = String(radius)
+        
+        milesOrKm.layer.cornerRadius = 15
+        milesOrKm.layer.borderWidth = 2.0
+        milesOrKm.layer.borderColor = loginText.cgColor
+        milesOrKm.layer.masksToBounds = true
+        postTypeSelector.layer.cornerRadius = 25
+        postTypeSelector.layer.borderWidth = 2.0
+        postTypeSelector.layer.borderColor = loginText.cgColor
+        postTypeSelector.layer.masksToBounds = true
+    }
+    
+    @IBAction func milesKmChanged(_ sender: UISegmentedControl) {
+        switch milesOrKm.selectedSegmentIndex {
+        case 0:
+            //display as mi
+            radiusEntry.text = String(radius)
+            radiusEntry.placeholder = String(radius)
+            print("Switched to mi")
+            
+        case 1:
+            print("switched to km")
+            let temp = radius*1.609
+            radiusEntry.text = String(Double(round(10*temp)/10))
+            radiusEntry.placeholder = String(Double(round(10*temp)/10))
+            
+        default:
+            break
+        }
     }
     
     @IBAction func changeCategory(_ sender: UISegmentedControl) {
-        switch categorySegOutlet.selectedSegmentIndex {
+        switch postTypeSelector.selectedSegmentIndex {
         case 0: category = "All"
         case 1: category = "#Food"
         case 2: category = "#Landmark"
@@ -68,10 +98,18 @@ class SettingsVC : UIViewController {
     }
     
     @IBAction func saveRadius(_ sender: Any) {
-        radiusEntry.placeholder = radiusEntry.text
         radiusEntry.resignFirstResponder()
         let radiusString: String = radiusEntry.text!
         radius = Double(radiusString) as! Double
+        
+        if(milesOrKm.selectedSegmentIndex == 0){
+            radiusEntry.placeholder = radiusEntry.text
+        }
+        else{
+            let temp = radius*1.609
+            radiusEntry.text = String(Double(round(10*temp)/10))
+            radiusEntry.placeholder = String(Double(round(10*temp)/10))
+        }
     }
     
     

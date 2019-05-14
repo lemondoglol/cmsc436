@@ -66,7 +66,7 @@ class LoginViewController : UIViewController{
         
         textInputContainer.layer.cornerRadius = 25
         textInputContainer.layer.borderWidth = 2
-        textInputContainer.layer.borderColor = msGreen.cgColor
+        textInputContainer.layer.borderColor = loginText.cgColor
         
         
     }
