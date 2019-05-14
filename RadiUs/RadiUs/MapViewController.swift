@@ -27,6 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D?
     var searchRadius: Double?
+    var searchCategory: String?
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -64,9 +65,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.viewDidAppear(true)
         print("viewDidAppear() called from MAP")
         
-        // Get the radius from the settings tab
+        // Get the radius and category from the settings tab
         let settingsVC = tabBarController!.viewControllers![2] as! SettingsVC
         searchRadius = settingsVC.radius
+        searchCategory = settingsVC.category
         
         // Request location upon switching tab, forcing the map to center on the user. This will call the
         // didUpdateLocations for the locationManager
@@ -100,7 +102,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func setupAnnotations() {
         let currentLat: Double = currentLocation!.latitude
         let currentLong: Double = currentLocation!.longitude
-        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!)) { (posts) in
+        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!), category: searchCategory!) { (posts) in
             for post in posts {
                 // print("Adding annotation of post: \(post.postID)")
                 let postAnnotation = PostAnnotation(post)
@@ -205,7 +207,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
      Although we're using miles as the unit, we always use mileToMeters() (look above) when dealing with
      CLLocation stuff, 'cause they like meters. The range parameter will usually, correctly be in meters.
      */
-    func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double, completion: @escaping (_ posts: [Post]) -> ()) {
+    func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double, category: String, completion: @escaping (_ posts: [Post]) -> ()) {
         var res = [Post]()
         databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
             var allPosts:[Post] = [Post]()
@@ -230,7 +232,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let dist =  coordinate1.distance(from: coordinate0)
                 
                 if (dist <= range) {
-                    res.append(post)
+                    if category == post.category || category == "All" {
+                        res.append(post)
+                    }
                 }
             }
             print("Amount of posts found: \(res.count)")

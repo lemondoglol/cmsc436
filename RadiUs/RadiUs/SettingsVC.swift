@@ -21,11 +21,13 @@ class SettingsVC : UIViewController {
      Also, the unit we're using is miles.
      */
     var radius: Double = 20
+    var category: String = "All"
     
     @IBOutlet weak var saveRadiusButton: UIButton!
     @IBOutlet weak var logoutButtonOutlet: UIButton!
     @IBOutlet weak var setRadiusContainer: UIView!
     @IBOutlet weak var radiusEntry: UITextField!
+    @IBOutlet weak var categorySegOutlet: UISegmentedControl!
     
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)
@@ -55,13 +57,24 @@ class SettingsVC : UIViewController {
         radiusEntry.text? = String(radius)
     }
     
+    @IBAction func changeCategory(_ sender: UISegmentedControl) {
+        switch categorySegOutlet.selectedSegmentIndex {
+        case 0: category = "All"
+        case 1: category = "#Entertainment"
+        case 2: category = "#Food"
+        case 3: category = "#Landmark"
+        default: print ("Uh oh. Something is wrong with the category segmented control.")
+        }
+    }
+    
     @IBAction func saveRadius(_ sender: Any) {
         radiusEntry.placeholder = radiusEntry.text
         radiusEntry.resignFirstResponder()
-        //TODO update radius when pressed
         let radiusString: String = radiusEntry.text!
         radius = Double(radiusString) as! Double
     }
+    
+    
     
     @IBAction func logout(_ sender: Any) {
         dismiss(animated: true, completion: nil)

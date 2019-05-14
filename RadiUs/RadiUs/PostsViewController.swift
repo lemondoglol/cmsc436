@@ -27,6 +27,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     var locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D?
     var searchRadius: Double?
+    var searchCategory: String?
     
     @IBOutlet weak var tableViewOutlet: UITableView! {
         didSet {
@@ -85,9 +86,10 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         super.viewDidAppear(true)
         print("viewDidAppear() called from POSTS")
         
-        // Get the radius from the settings tab
+        // Get the radius and category from the settings tab
         let settingsVC = tabBarController!.viewControllers![2] as! SettingsVC
         searchRadius = settingsVC.radius
+        searchCategory = settingsVC.category
         
         setUpLocationServices()
         updateVisiblePosts()
@@ -122,7 +124,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         currentLocation = locationManager.location?.coordinate
         let currentLat: Double = currentLocation!.latitude
         let currentLong: Double = currentLocation!.longitude
-        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!)) { (posts) in
+        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!), category: searchCategory!) { (posts) in
             for post in posts {
                 self.visiblePosts.append(post)
                 self.sortPostsByDistance()
@@ -195,7 +197,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
      Although we're using miles as the unit, we always use mileToMeters() (look above) when dealing with
      CLLocation stuff, 'cause they like meters. The range parameter will usually, correctly be in meters.
      */
-    func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double, completion: @escaping (_ posts: [Post]) -> ()) {
+    func findPostsAround(userLatitude:Double, userLongtitude:Double, range: Double, category: String, completion: @escaping (_ posts: [Post]) -> ()) {
         var res = [Post]()
         databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
             var allPosts:[Post] = [Post]()
@@ -222,11 +224,11 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
                 
                 //print("range \(range) distance \(dist) \(post.latitude!) \(post.longitude!) \(userLatitude) \(userLongtitude)")
                 if (dist <= range) {
-                    res.append(post)
+                    if category == post.category || category == "All" {
+                        res.append(post)
+                    }
                 }
             }
-            // TODO
-            // do updating view here, data was stored in 'res'
             print("Amount of posts found: \(res.count)")
             completion(res)
         })

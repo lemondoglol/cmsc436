@@ -117,10 +117,14 @@
                                         <rect key="frame" x="8" y="170" width="224" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
+                                            <segment title="All"/>
                                             <segment title="Entertainment"/>
                                             <segment title="Food"/>
                                             <segment title="Landmarks"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="changeCategory:" destination="wzV-iS-n5D" eventType="valueChanged" id="0zN-4C-712"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -167,6 +171,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="ZEq-tl-LHS"/>
                     <navigationItem key="navigationItem" id="lne-D0-4H8"/>
                     <connections>
+                        <outlet property="categorySegOutlet" destination="wNo-o1-ple" id="7Ih-ZQ-DBn"/>
                         <outlet property="logoutButtonOutlet" destination="TYH-2k-CkL" id="rN4-tS-dxr"/>
                         <outlet property="radiusEntry" destination="Jei-SC-oIP" id="0IN-em-yen"/>
                         <outlet property="saveRadiusButton" destination="SRL-tB-1f8" id="hvS-ch-dez"/>
