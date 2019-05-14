@@ -92,19 +92,19 @@ class ViewController: UIViewController {
     
     // you can run this method to see how it works
     func test() {
-        let p1 = Post(postID: "0", content: "good", latitude: 0, longitude: 0)
-        let p2 = Post(postID: "1", content: "haha", latitude: 1, longitude: 1)
-        storeUserToFirebase(user: currentUser)
-        makeNewPost(content: "i just made another new post", latitude: 4.5, longitude: 3.3)
-        storeSinglePostToFirebase(post: p1)
-        storeSinglePostToFirebase(post: p2)
-        findPostsAround(userLatitude: 0, userLongtitude: 0, range: 10)
-        makeCommentsOnPost(comment: "rc add a a anew comment", postID: "1")
-        retrieveSinglePostFromFirebase(postID: "1")
-        retrieveAllPostsFromFirebase()
+        // let p1 = Post(postID: "0", content: "good", latitude: 0, longitude: 0)
+        // let p2 = Post(postID: "1", content: "haha", latitude: 1, longitude: 1)
+        // storeUserToFirebase(user: currentUser)
+        // makeNewPost(content: "i just made another new post", latitude: 4.5, longitude: 3.3)
+        // storeSinglePostToFirebase(post: p1)
+        // storeSinglePostToFirebase(post: p2)
+        // findPostsAround(userLatitude: 0, userLongtitude: 0, range: 10)
+        // makeCommentsOnPost(comment: "rc add a a anew comment", postID: "1")
+        // retrieveSinglePostFromFirebase(postID: "1")
+        // ()
         
-        logInVerify(emailAddress: "rc@fakemailcom", password: "abc123")
-        logInVerify(emailAddress: "rcs@fakemailcom", password: "abc123")
+        // logInVerify(emailAddress: "rc@fakemailcom", password: "abc123")
+        // logInVerify(emailAddress: "rcs@fakemailcom", password: "abc123")
     }
     
     /*
@@ -121,7 +121,9 @@ class ViewController: UIViewController {
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "catgeory").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 if comments == nil {
                     comments = [String]()
                 }
@@ -158,7 +160,9 @@ class ViewController: UIViewController {
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let res = Post(postID: postkeyID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "catgeory").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let res = Post(postID: postkeyID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 post = res
                 if comments == nil {
                     comments = [String]()
@@ -171,22 +175,35 @@ class ViewController: UIViewController {
             self.databaseRef.child("postTable").child(post.postID).child("latitude").setValue(post.latitude)
             self.databaseRef.child("postTable").child(post.postID).child("longitude").setValue(post.longitude)
             self.databaseRef.child("postTable").child(post.postID).child("comments").setValue(post.comments)
+            self.databaseRef.child("postTable").child(post.postID).child("category").setValue(post.category)
+            self.databaseRef.child("postTable").child(post.postID).child("date").setValue(post.date)
         })
     }
     
     // make a new post
-    func makeNewPost(content:String, latitude:Double, longitude:Double){
+    func makeNewPost(content:String, latitude:Double, longitude:Double, category: String) {
         var post:Post!
+        let date = getDate()
         databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
             var count = 0
             count = Int(snapshot.childrenCount)
-            post = Post(postID: String(count), content: content, latitude: latitude, longitude: longitude)
+            post = Post(postID: String(count), content: content, latitude: latitude, longitude: longitude, category: category, date: date)
             self.databaseRef.child("postTable").child(post.postID).setValue(post.postID)
             self.databaseRef.child("postTable").child(post.postID).child("content").setValue(post.content)
             self.databaseRef.child("postTable").child(post.postID).child("latitude").setValue(post.latitude)
             self.databaseRef.child("postTable").child(post.postID).child("longitude").setValue(post.longitude)
             self.databaseRef.child("postTable").child(post.postID).child("comments").setValue(post.comments)
+            self.databaseRef.child("postTable").child(post.postID).child("date").setValue(post.date)
         })
+    }
+    
+    func getDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .medium
+        let dateString: String = formatter.string(from: date)
+        return dateString
     }
     
     /*
@@ -205,7 +222,9 @@ class ViewController: UIViewController {
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "catgeory").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 if comments == nil {
                     comments = [String]()
                 }
@@ -229,7 +248,9 @@ class ViewController: UIViewController {
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "catgeory").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 if comments == nil {
                     comments = [String]()
                 }

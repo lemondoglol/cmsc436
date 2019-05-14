@@ -97,7 +97,9 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "category").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 if comments == nil {
                     comments = [String]()
                 }
@@ -121,7 +123,9 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let res = Post(postID: postkeyID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "category").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let res = Post(postID: postkeyID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 post = res
                 if comments == nil {
                     comments = [String]()
@@ -134,6 +138,8 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
             self.databaseRef.child("postTable").child(post.postID).child("latitude").setValue(post.latitude)
             self.databaseRef.child("postTable").child(post.postID).child("longitude").setValue(post.longitude)
             self.databaseRef.child("postTable").child(post.postID).child("comments").setValue(post.comments)
+            self.databaseRef.child("postTable").child(post.postID).child("category").setValue(post.category)
+            self.databaseRef.child("postTable").child(post.postID).child("date").setValue(post.date)
         })
     }
     

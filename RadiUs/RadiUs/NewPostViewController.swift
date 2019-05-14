@@ -124,7 +124,7 @@ class NewPostViewController: UIViewController {
      up to notify the user that the Post as been created. Send the user back to the PostsView.
      */
     @IBAction func sendAction(_ sender: UIButton) {
-        makeNewPost(content: inputPostOutlet.text, latitude: currentLocation!.latitude, longitude: currentLocation!.longitude)
+        makeNewPost(content: inputPostOutlet.text, latitude: currentLocation!.latitude, longitude: currentLocation!.longitude, category: tagEntryField.text!)
         let alert = UIAlertController(title: "Success!", message: "You've successfully created your post!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
             self.navigationController?.popViewController(animated: true)
@@ -144,7 +144,9 @@ class NewPostViewController: UIViewController {
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let res = Post(postID: postkeyID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "category").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let res = Post(postID: postkeyID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 post = res
                 if comments == nil {
                     comments = [String]()
@@ -157,22 +159,36 @@ class NewPostViewController: UIViewController {
             self.databaseRef.child("postTable").child(post.postID).child("latitude").setValue(post.latitude)
             self.databaseRef.child("postTable").child(post.postID).child("longitude").setValue(post.longitude)
             self.databaseRef.child("postTable").child(post.postID).child("comments").setValue(post.comments)
+            self.databaseRef.child("postTable").child(post.postID).child("category").setValue(post.category)
+            self.databaseRef.child("postTable").child(post.postID).child("date").setValue(post.date)
         })
     }
     
-    func makeNewPost(content: String, latitude: Double, longitude: Double) {
+    func makeNewPost(content: String, latitude: Double, longitude: Double, category: String) {
         var post:Post!
+        let date = getDate()
         databaseRef.child("postTable").observeSingleEvent(of: .value, with: {(snapshot) in
             var count = 0
             count = Int(snapshot.childrenCount)
             print ("this is count: \(count)")
-            post = Post(postID: String(count), content: content, latitude: latitude, longitude: longitude)
+            post = Post(postID: String(count), content: content, latitude: latitude, longitude: longitude, category: category, date: date)
             self.databaseRef.child("postTable").child(post.postID).setValue(post.postID)
             self.databaseRef.child("postTable").child(post.postID).child("content").setValue(post.content)
             self.databaseRef.child("postTable").child(post.postID).child("latitude").setValue(post.latitude)
             self.databaseRef.child("postTable").child(post.postID).child("longitude").setValue(post.longitude)
             self.databaseRef.child("postTable").child(post.postID).child("comments").setValue(post.comments)
+            self.databaseRef.child("postTable").child(post.postID).child("category").setValue(post.category)
+            self.databaseRef.child("postTable").child(post.postID).child("date").setValue(post.date)
         })
+    }
+    
+    func getDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .medium
+        let dateString: String = formatter.string(from: date)
+        return dateString
     }
 }
 

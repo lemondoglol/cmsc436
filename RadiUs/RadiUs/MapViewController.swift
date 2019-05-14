@@ -215,7 +215,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let latitude = child.childSnapshot(forPath: "latitude").value as? Double
                 let longitude = child.childSnapshot(forPath: "longitude").value as? Double
                 var comments = child.childSnapshot(forPath: "comments").value as? [String]
-                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!)
+                let category = child.childSnapshot(forPath: "category").value as? String
+                let date = child.childSnapshot(forPath: "date").value as? String
+                let post = Post(postID: postID, content: content!, latitude: latitude!, longitude: longitude!, category: category!, date: date!)
                 if comments == nil {
                     comments = [String]()
                 }

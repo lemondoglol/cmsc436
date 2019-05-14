@@ -18,14 +18,17 @@ class Post {
     var comments = [String]()
     var latitude: Double?
     var longitude: Double?
+    var category: String?
+    var date: String?
     
-    
-    init(postID:String, content:String, latitude: Double, longitude: Double){
+    init(postID:String, content:String, latitude: Double, longitude: Double, category: String, date: String) {
         self.postID = postID
         self.content = content
         self.latitude = latitude
         self.longitude = longitude
         comments = []
+        self.category = category
+        self.date = date
     }
 
 }
