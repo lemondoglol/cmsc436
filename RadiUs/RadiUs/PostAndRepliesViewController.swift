@@ -35,9 +35,11 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var postLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var inputCommentOutlet: UITextField!
+    @IBOutlet weak var inputCommentOutlet: UITextView!
     @IBOutlet weak var sendButton: UIButton!
     
+    @IBOutlet weak var postContentContainer: UIView!
+    @IBOutlet weak var commentBoxContainer: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +56,18 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
         let refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(doRefresh), for: .valueChanged)
         tableViewOutlet.refreshControl = refresher
+        
+        
+        commentBoxContainer.layer.cornerRadius = 25
+        
+        commentBoxContainer.layer.borderWidth = 2.0
+        commentBoxContainer.layer.borderColor = limeGreen.cgColor
+        
+        tableViewOutlet.roundCorners(corners: [.allCorners], radius:    25)
+        
+            postContentContainer.layer.borderColor = limeGreen.cgColor
+        postContentContainer.layer.cornerRadius = 25
+        postContentContainer.layer.borderWidth = 2.0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
