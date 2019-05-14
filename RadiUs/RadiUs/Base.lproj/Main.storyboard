@@ -702,7 +702,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbE-ag-YRm">
-                                <rect key="frame" x="0.0" y="188" width="414" height="575"/>
+                                <rect key="frame" x="0.0" y="288" width="414" height="475"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReplyCell" id="JaS-qM-1hQ" customClass="ReplyCell" customModule="RadiUs" customModuleProvider="target">
@@ -732,25 +732,63 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rn-B1-Kbg">
-                                <rect key="frame" x="45" y="99" width="327" height="93"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Post content will be in this box" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rn-B1-Kbg">
+                                <rect key="frame" x="45" y="99" width="327" height="145"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date will be here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKn-zM-jGh">
+                                <rect key="frame" x="45" y="252" width="157" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category will be here" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgu-kE-zjs">
+                                <rect key="frame" x="269" y="252" width="103" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LH2-sO-KsS">
+                                <rect key="frame" x="0.0" y="768" width="364" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JeC-3h-hSQ"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUs-43-h2H">
+                                <rect key="frame" x="374" y="773" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="send"/>
+                                <connections>
+                                    <action selector="sendAction:" destination="MBU-Tn-Vph" eventType="touchUpInside" id="npX-4A-yW8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="QPN-VD-Rjy" firstAttribute="trailing" secondItem="dbE-ag-YRm" secondAttribute="trailing" id="1tw-jd-nes"/>
-                            <constraint firstItem="dbE-ag-YRm" firstAttribute="top" secondItem="QPN-VD-Rjy" secondAttribute="top" constant="100" id="9lQ-A2-R5b"/>
+                            <constraint firstItem="dbE-ag-YRm" firstAttribute="top" secondItem="QPN-VD-Rjy" secondAttribute="top" constant="200" id="9lQ-A2-R5b"/>
+                            <constraint firstItem="QPN-VD-Rjy" firstAttribute="trailing" secondItem="LH2-sO-KsS" secondAttribute="trailing" constant="50" id="Mfl-Ig-Rpo"/>
+                            <constraint firstItem="LH2-sO-KsS" firstAttribute="leading" secondItem="QPN-VD-Rjy" secondAttribute="leading" id="X5x-bW-SJW"/>
                             <constraint firstItem="dbE-ag-YRm" firstAttribute="leading" secondItem="QPN-VD-Rjy" secondAttribute="leading" id="XsF-Oz-cue"/>
+                            <constraint firstItem="QPN-VD-Rjy" firstAttribute="bottom" secondItem="LH2-sO-KsS" secondAttribute="bottom" constant="5" id="fxI-Fa-lcD"/>
                             <constraint firstItem="QPN-VD-Rjy" firstAttribute="bottom" secondItem="dbE-ag-YRm" secondAttribute="bottom" constant="50" id="pZm-IO-d3A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QPN-VD-Rjy"/>
                     </view>
                     <connections>
+                        <outlet property="categoryLabel" destination="tgu-kE-zjs" id="1Fm-g0-64m"/>
+                        <outlet property="dateLabel" destination="iKn-zM-jGh" id="WkT-Ar-It3"/>
+                        <outlet property="inputCommentOutlet" destination="LH2-sO-KsS" id="rks-Ee-e0T"/>
                         <outlet property="postLabel" destination="8rn-B1-Kbg" id="01s-rP-NVW"/>
+                        <outlet property="sendButton" destination="hUs-43-h2H" id="5TZ-uh-KIb"/>
                         <outlet property="tableViewOutlet" destination="dbE-ag-YRm" id="AJV-Nc-9Wj"/>
                     </connections>
                 </viewController>

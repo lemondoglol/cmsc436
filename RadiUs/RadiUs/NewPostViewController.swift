@@ -57,7 +57,7 @@ class NewPostViewController: UIViewController {
             
             tagEntryField.placeholder = "#Food"
             
-            tagEntryField.text = ""
+            tagEntryField.text = "#Food"
             addTagButton.isUserInteractionEnabled = false
         case 2:
             tagEntryField.isUserInteractionEnabled = false
@@ -69,7 +69,7 @@ class NewPostViewController: UIViewController {
             tagEntryField.placeholder = "#Landmark"
             tagEntryField.text = tagSaver
             
-            tagEntryField.text = ""
+            tagEntryField.text = "#Landmark"
             addTagButton.isUserInteractionEnabled = false
         case 3:
             tagEntryField.isUserInteractionEnabled = false
@@ -81,7 +81,7 @@ class NewPostViewController: UIViewController {
             tagEntryField.placeholder = "#Event"
             tagEntryField.text = tagSaver
             
-            tagEntryField.text = ""
+            tagEntryField.text = "#Event"
             addTagButton.isUserInteractionEnabled = false
             
         default:

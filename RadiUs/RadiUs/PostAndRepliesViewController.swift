@@ -33,11 +33,19 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBOutlet weak var postLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var inputCommentOutlet: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set up labels and content stuff
         replies = post?.comments
         postLabel.text = post?.content
+        dateLabel.text = post?.date
+        categoryLabel.text = post?.category
         
         // Set up Firebase
         databaseRef = Database.database().reference()
@@ -143,16 +151,16 @@ class PostAndRepliesViewController: UIViewController, UITableViewDelegate, UITab
         })
     }
     
-    // TODO: make and connect an actual input text field outlet
-    var inputComment = "This is a comment with random number: \(Int.random(in: 0..<100))"
-    func sendComment() {
-        replies?.append(inputComment)
-        tableViewOutlet.reloadData()
-        makeCommentsOnPost(comment: inputComment, postID: post!.postID)
+    @IBAction func sendAction(_ sender: UIButton) {
+        sendComment()
+        inputCommentOutlet.text = ""
     }
     
-    // TODO: remove this (testing purposes)
-    @IBAction func testSendComment(_ sender: UIButton) {
-        sendComment()
+    // TODO: make and connect an actual input text field outlet
+    func sendComment() {
+        let commentString = inputCommentOutlet.text!
+        replies?.append(commentString)
+        tableViewOutlet.reloadData()
+        makeCommentsOnPost(comment: commentString, postID: post!.postID)
     }
 }
