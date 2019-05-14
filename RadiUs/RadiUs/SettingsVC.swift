@@ -60,9 +60,9 @@ class SettingsVC : UIViewController {
     @IBAction func changeCategory(_ sender: UISegmentedControl) {
         switch categorySegOutlet.selectedSegmentIndex {
         case 0: category = "All"
-        case 1: category = "#Entertainment"
-        case 2: category = "#Food"
-        case 3: category = "#Landmark"
+        case 1: category = "#Food"
+        case 2: category = "#Landmark"
+        case 3: category = "#Event"
         default: print ("Uh oh. Something is wrong with the category segmented control.")
         }
     }

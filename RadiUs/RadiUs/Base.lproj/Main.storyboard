@@ -118,9 +118,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="All"/>
-                                            <segment title="Entertainment"/>
                                             <segment title="Food"/>
-                                            <segment title="Landmarks"/>
+                                            <segment title="Landmark"/>
+                                            <segment title="Event"/>
                                         </segments>
                                         <connections>
                                             <action selector="changeCategory:" destination="wzV-iS-n5D" eventType="valueChanged" id="0zN-4C-712"/>
