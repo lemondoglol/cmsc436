@@ -137,7 +137,13 @@ class NewPostViewController: UIViewController {
      up to notify the user that the Post as been created. Send the user back to the PostsView.
      */
     @IBAction func sendAction(_ sender: UIButton) {
-        makeNewPost(content: inputPostOutlet.text, latitude: currentLocation!.latitude, longitude: currentLocation!.longitude, category: tagEntryField.text!)
+        let categoryString: String = tagEntryField.text!
+        var newCat = categoryString
+        if categoryString.prefix(1) != "#" {
+            newCat = "#"
+            newCat.append(categoryString)
+        }
+        makeNewPost(content: inputPostOutlet.text, latitude: currentLocation!.latitude, longitude: currentLocation!.longitude, category: newCat)
         let alert = UIAlertController(title: "Success!", message: "You've successfully created your post!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
             self.navigationController?.popViewController(animated: true)
