@@ -21,17 +21,73 @@ class NewPostViewController: UIViewController {
     
     @IBOutlet weak var publicPostOutlet: UIButton!
     
-    @IBOutlet weak var inputPostOutlet: UITextView!
+    @IBOutlet weak var surroundingScrollView: UITextView!
     
+    @IBOutlet weak var inputPostOutlet: UITextView!
+    @IBOutlet weak var postTypeSelector: UISegmentedControl!
+    @IBOutlet weak var customTagEntry: UIView!
+    
+    @IBOutlet weak var addTagButton: UIButton!
+    @IBOutlet weak var tagEntryField: UITextField!
     var databaseRef:DatabaseReference!
     
     var currentLocation: CLLocationCoordinate2D?
+    var tagSaver = ""
     
     let msGreen = UIColor(rgb: 0x00FA9A)
     let limeGreen = UIColor(rgb: 0x90EE90)
     let aliceBlue = UIColor(rgb: 0xF0F8FF)
     let aquamarine = UIColor(rgb: 0x7FFFD4)
     let loginText = UIColor(rgb: 0xFA8072)
+    
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
+        switch postTypeSelector.selectedSegmentIndex
+        {
+        case 0:
+        tagEntryField.isUserInteractionEnabled = true
+        tagEntryField.placeholder = "#YourCustomTag"
+            tagEntryField.text = tagSaver
+            addTagButton.isUserInteractionEnabled = true
+        case 1:
+            tagEntryField.isUserInteractionEnabled = false
+            
+            if(tagEntryField.placeholder == "#YourCustomTag"){
+                tagSaver = tagEntryField.text ?? ""
+            }
+            
+            tagEntryField.placeholder = "#Food"
+            
+            tagEntryField.text = ""
+            addTagButton.isUserInteractionEnabled = false
+        case 2:
+            tagEntryField.isUserInteractionEnabled = false
+            
+            if(tagEntryField.placeholder == "#YourCustomTag"){
+                tagSaver = tagEntryField.text ?? ""
+            }
+            
+            tagEntryField.placeholder = "#Landmark"
+            tagEntryField.text = tagSaver
+            
+            tagEntryField.text = ""
+            addTagButton.isUserInteractionEnabled = false
+        case 3:
+            tagEntryField.isUserInteractionEnabled = false
+            
+            if(tagEntryField.placeholder == "#YourCustomTag"){
+                tagSaver = tagEntryField.text ?? ""
+            }
+            
+            tagEntryField.placeholder = "#Event"
+            tagEntryField.text = tagSaver
+            
+            tagEntryField.text = ""
+            addTagButton.isUserInteractionEnabled = false
+            
+        default:
+            break
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +100,22 @@ class NewPostViewController: UIViewController {
         self.navigationItem.title = "Post Something New"
         
         publicPostOutlet.setTitleColor(loginText, for: .normal)
+        
+        surroundingScrollView.layer.cornerRadius = 25
+        
+        surroundingScrollView.layer.borderColor = loginText.cgColor
+        surroundingScrollView.layer.borderWidth = 2
+    
+        //postTypeSelector.ignoreCornerRadius()
+        postTypeSelector.layer.cornerRadius = 25
+        postTypeSelector.layer.borderWidth = 2.0
+        postTypeSelector.layer.borderColor = loginText.cgColor
+        postTypeSelector.layer.masksToBounds = true
+        
+        customTagEntry.layer.cornerRadius = 25
+        customTagEntry.layer.borderWidth = 2
+        customTagEntry.layer.borderColor = loginText.cgColor
+        
     }
     
     /*
@@ -101,5 +173,26 @@ class NewPostViewController: UIViewController {
             self.databaseRef.child("postTable").child(post.postID).child("longitude").setValue(post.longitude)
             self.databaseRef.child("postTable").child(post.postID).child("comments").setValue(post.comments)
         })
+    }
+}
+
+extension UISegmentedControl {
+    
+    func ignoreCornerRadius() {
+        
+        let renderer = UIGraphicsImageRenderer(size: bounds.size)
+        
+        let normalImage = renderer.image { (context) in
+            tintColor.setStroke()
+            context.stroke(bounds)
+        }
+        let selectedImage = renderer.image { (context) in
+            tintColor.setFill()
+            context.fill(bounds)
+        }
+        
+        setBackgroundImage(normalImage, for: .normal, barMetrics: .default)
+        setBackgroundImage(selectedImage, for: .selected, barMetrics: .default)
+        
     }
 }

@@ -62,7 +62,7 @@ class SignupViewController : UIViewController{
         lastName.layer.backgroundColor = UIColor.white.cgColor
         lastName.borderStyle = UITextField.BorderStyle.roundedRect
         
-        textInputContainer.layer.cornerRadius = 20
+        textInputContainer.layer.cornerRadius = 25
         textInputContainer.layer.borderWidth = 2
         textInputContainer.layer.borderColor = msGreen.cgColor
     }

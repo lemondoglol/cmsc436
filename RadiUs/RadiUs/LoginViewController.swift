@@ -68,7 +68,7 @@ class LoginViewController : UIViewController{
         textInputContainer.layer.borderWidth = 2
         textInputContainer.layer.borderColor = msGreen.cgColor
         
-        //appLabel.font = UIFont (name: "Nanum Pen Script", size: 36)
+        appLabel.font = UIFont (name: "Nanum Pen Script", size: 42)
         
     }
     
