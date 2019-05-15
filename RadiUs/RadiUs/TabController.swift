@@ -28,6 +28,9 @@ class TabController : UITabBarController{
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         //self.tabBar.layer.cornerRadius = 50
     }
+    override open var shouldAutorotate: Bool {
+        return false
+    }
     
 //    override func viewWillLayoutSubviews() {
 //        super.viewWillLayoutSubviews()
