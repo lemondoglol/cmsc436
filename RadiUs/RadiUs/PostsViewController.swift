@@ -26,8 +26,8 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D?
-    var searchRadius: Double?
-    var searchCategory: String?
+    var searchRadius: Double = 20
+    var searchCategory: String = "All"
     
     @IBOutlet weak var tableViewOutlet: UITableView! {
         didSet {
@@ -56,6 +56,11 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         // Do any additional setup after loading the view.
         print("Posts: viewDidLoad() called")
         
+        // Set up location services
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        
+        locationManager.requestLocation()
         // Set up Firebase
         databaseRef = Database.database().reference()
         
@@ -68,10 +73,6 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
         tableViewOutlet.roundCorners(corners: [.allCorners], radius: 40)
         
         self.navigationItem.title = "Posts Near You"
-        
-        // Set up location services
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
         // Set up refresh controls (swipe and hold downward to refresh)
         let refresher = UIRefreshControl()
@@ -108,23 +109,18 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     
     // Called in viewDidAppear()
     func setUpLocationServices() {
-        if CLLocationManager.authorizationStatus() == .authorizedAlways ||
-            CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.startUpdatingLocation()
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-        }
+       locationManager.startUpdatingLocation()
     }
     
     // Called in viewDidAppear() and doRefresh()
     func updateVisiblePosts() {
         visiblePosts.removeAll(keepingCapacity: false)
         tableViewOutlet.reloadData()
-        
-        currentLocation = locationManager.location?.coordinate
+        locationManager.requestLocation()
+        // currentLocation = locationManager.location?.coordinate
         let currentLat: Double = currentLocation!.latitude
         let currentLong: Double = currentLocation!.longitude
-        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius!), category: searchCategory!) { (posts) in
+        findPostsAround(userLatitude: currentLat, userLongtitude: currentLong, range: mileToMeters(miles: searchRadius), category: searchCategory) { (posts) in
             for post in posts {
                 self.visiblePosts.append(post)
                 self.sortPostsByDistance()
@@ -184,6 +180,7 @@ class PostsViewController: UIViewController, CLLocationManagerDelegate, UITableV
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print ("Update loc from POSTS")
+        currentLocation = locations.last?.coordinate
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

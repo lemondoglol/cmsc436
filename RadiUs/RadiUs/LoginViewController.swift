@@ -16,9 +16,11 @@ import CoreLocation
 /*
  This View Controller controls the View in which the User can log in.
  */
-class LoginViewController : UIViewController{
+class LoginViewController : UIViewController, CLLocationManagerDelegate {
     
     var databaseRef:DatabaseReference!
+    
+    var locationManager = CLLocationManager()
     
     @IBOutlet weak var appLabel: UILabel!
     @IBOutlet weak var usernameOutlet: UITextField!
@@ -67,8 +69,19 @@ class LoginViewController : UIViewController{
         textInputContainer.layer.cornerRadius = 25
         textInputContainer.layer.borderWidth = 2
         textInputContainer.layer.borderColor = loginText.cgColor
-        
-        
+
+        setUpLocationServices()
+    }
+    
+    func setUpLocationServices() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if CLLocationManager.authorizationStatus() == .authorizedAlways ||
+            CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     /*
