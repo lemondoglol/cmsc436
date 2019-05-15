@@ -139,7 +139,9 @@ class NewPostViewController: UIViewController {
     @IBAction func sendAction(_ sender: UIButton) {
         let categoryString: String = tagEntryField.text!
         var newCat = categoryString
-        if categoryString.prefix(1) != "#" {
+        if categoryString.count == 0 {
+            newCat = ""
+        } else if categoryString.prefix(1) != "#" {
             newCat = "#"
             newCat.append(categoryString)
         }
