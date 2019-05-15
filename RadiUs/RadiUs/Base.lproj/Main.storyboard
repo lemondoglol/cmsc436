@@ -721,16 +721,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEf-uH-VOI">
-                                                    <rect key="frame" x="45" y="10" width="308" height="33"/>
+                                                    <rect key="frame" x="25" y="10" width="348" height="23.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="BEf-uH-VOI" firstAttribute="bottom" secondItem="xbD-cI-nLS" secondAttribute="bottomMargin" constant="10" id="Aeb-X6-fth"/>
-                                                <constraint firstItem="BEf-uH-VOI" firstAttribute="leading" secondItem="xbD-cI-nLS" secondAttribute="leadingMargin" constant="25" id="LCE-wW-ixI"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="BEf-uH-VOI" secondAttribute="trailing" constant="25" id="jVz-Oh-vpf"/>
+                                                <constraint firstAttribute="bottom" secondItem="BEf-uH-VOI" secondAttribute="bottom" constant="10" id="5Oo-7f-Q2t"/>
+                                                <constraint firstAttribute="trailing" secondItem="BEf-uH-VOI" secondAttribute="trailing" constant="25" id="S2K-dJ-69a"/>
+                                                <constraint firstItem="BEf-uH-VOI" firstAttribute="leading" secondItem="xbD-cI-nLS" secondAttribute="leading" constant="25" id="i43-uC-18I"/>
                                                 <constraint firstItem="BEf-uH-VOI" firstAttribute="top" secondItem="xbD-cI-nLS" secondAttribute="top" constant="10" id="mvL-tI-ZKp"/>
                                             </constraints>
                                         </tableViewCellContentView>
