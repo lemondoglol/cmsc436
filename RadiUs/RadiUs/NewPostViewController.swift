@@ -137,6 +137,15 @@ class NewPostViewController: UIViewController {
      up to notify the user that the Post as been created. Send the user back to the PostsView.
      */
     @IBAction func sendAction(_ sender: UIButton) {
+        if(inputPostOutlet.text == ""){
+            let alertController = UIAlertController(title: "Hey, your post is empty!", message:
+                "Try filling it with some text.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default))
+            
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
         let categoryString: String = tagEntryField.text!
         var newCat = categoryString
         if categoryString.count == 0 {

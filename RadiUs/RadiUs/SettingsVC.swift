@@ -21,6 +21,7 @@ class SettingsVC : UIViewController {
      Also, the unit we're using is miles.
      */
     var radius: Double = 20
+    var usingMiles = true
     var category: String = "All"
     
     @IBOutlet weak var saveRadiusButton: UIButton!
@@ -68,24 +69,24 @@ class SettingsVC : UIViewController {
         postTypeSelector.layer.masksToBounds = true
     }
     
-    @IBAction func milesKmChanged(_ sender: UISegmentedControl) {
-        switch milesOrKm.selectedSegmentIndex {
-        case 0:
-            //display as mi
-            radiusEntry.text = String(radius)
-            radiusEntry.placeholder = String(radius)
-            print("Switched to mi")
-            
-        case 1:
-            print("switched to km")
-            let temp = radius*1.609
-            radiusEntry.text = String(Double(round(10*temp)/10))
-            radiusEntry.placeholder = String(Double(round(10*temp)/10))
-            
-        default:
-            break
-        }
-    }
+//    @IBAction func milesKmChanged(_ sender: UISegmentedControl) {
+//        switch milesOrKm.selectedSegmentIndex {
+//        case 0:
+//            //display as mi
+//            radiusEntry.text = String(radius)
+//            radiusEntry.placeholder = String(radius)
+//
+//        case 1:
+//            print("switched to km")
+//            let temp = radius*1.609
+//            radiusEntry.text = String(Double(round(10*temp)/10))
+//            radiusEntry.placeholder = String(Double(round(10*temp)/10))
+//
+//
+//        default:
+//            break
+//        }
+//    }
     
     @IBAction func changeCategory(_ sender: UISegmentedControl) {
         switch postTypeSelector.selectedSegmentIndex {
@@ -103,12 +104,17 @@ class SettingsVC : UIViewController {
         radius = Double(radiusString) as! Double
         
         if(milesOrKm.selectedSegmentIndex == 0){
-            radiusEntry.placeholder = radiusEntry.text
+            //radiusEntry.placeholder = radiusEntry.text
+            let temp = radius*1.609
+            radius = Double(round(10*temp)/10)
         }
         else{
-            let temp = radius*1.609
-            radiusEntry.text = String(Double(round(10*temp)/10))
-            radiusEntry.placeholder = String(Double(round(10*temp)/10))
+            let temp = radius/1.609
+            radius = Double(round(10*temp)/10)
+            
+            //Pls Don't delete this stuff
+//          radiusEntry.text = String(Double(round(10*temp)/10))
+//          radiusEntry.placeholder = String(Double(round(10*temp)/10))
         }
     }
     
